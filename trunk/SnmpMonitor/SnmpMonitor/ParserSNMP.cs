@@ -10,15 +10,28 @@ namespace SnmpMonitor
         public SNMPSequence ObtenerValor(Byte[] SNMPsequence){
 
             SNMPSequence sequence = new SNMPSequence();
-            sequence.
-            int length = SNMPsequence[1];
-            
-            for (int i = 0; i <= length; i++)
+            sequence.Snmpversion = SNMPsequence[4];
+            for (int i = 7; i <= 13; i++)
             {
-
+                sequence.Community = sequence.Community + SNMPsequence[i];
             }
-                
-              
+            SNMPPDU pdu = new SNMPPDU();
+            pdu.RequestID = SNMPsequence[18];
+            pdu.Error = SNMPsequence[21];
+            pdu.Index = SNMPsequence[24];
+            int leghtObject = SNMPsequence[28];
+            for (int j = 29; j <= (29 + leghtObject); j++)
+            {
+                pdu.ObjectIdentifier = pdu.ObjectIdentifier + SNMPsequence[j];
+            }
+            int sig1 = 29 + leghtObject + 2;
+            int leghtValor = SNMPsequence[sig1];
+            for (int k = (sig1 + 1); k <= (sig1 + leghtValor); k++)
+            {
+                pdu.Valor = pdu.Valor + SNMPsequence[k];
+            }
+            sequence.Snmppdu = pdu;
+            return sequence;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SnmpMonitor
         int error;
         int index;
         String objectIdentifier;
-        String value;
+        String valor;
 
         public SNMPPDU()
         { }
@@ -32,6 +32,18 @@ namespace SnmpMonitor
         {
             get { return index; }
             set { index = value; }
+        }
+
+        public String ObjectIdentifier
+        {
+            get { return objectIdentifier; }
+            set { objectIdentifier = value; }
+        }
+
+        public String Valor
+        {
+            get { return valor; }
+            set { valor = value; }
         }
 
         /*
