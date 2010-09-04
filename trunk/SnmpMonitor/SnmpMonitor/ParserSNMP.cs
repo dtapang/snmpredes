@@ -11,24 +11,26 @@ namespace SnmpMonitor
 
             SNMPSequence sequence = new SNMPSequence();
             sequence.Snmpversion = SNMPsequence[4];
-            for (int i = 7; i <= 13; i++)
+            int lengthCommunity = SNMPsequence[6];
+            for (int i = 7; i <= (6 + lengthCommunity); i++)
             {
-                sequence.Community = sequence.Community + SNMPsequence[i];
+                sequence.Community = sequence.Community + Convert.ToChar(SNMPsequence[i]);
             }
+            int sig = 6 + lengthCommunity;
             SNMPPDU pdu = new SNMPPDU();
-            pdu.RequestID = SNMPsequence[18];
-            pdu.Error = SNMPsequence[21];
-            pdu.Index = SNMPsequence[24];
-            int leghtObject = SNMPsequence[28];
-            for (int j = 29; j <= (29 + leghtObject); j++)
+            pdu.RequestID = SNMPsequence[sig + 4];
+            pdu.Error = SNMPsequence[sig + 7];
+            pdu.Index = SNMPsequence[sig + 10];
+            int leghtObject = SNMPsequence[sig + 17];
+            for (int j = (sig + 17 + 1); j <= (sig + 17 + leghtObject); j++)
             {
-                pdu.ObjectIdentifier = pdu.ObjectIdentifier + SNMPsequence[j];
+                pdu.ObjectIdentifier = pdu.ObjectIdentifier + Convert.ToChar(SNMPsequence[j]);
             }
-            int sig1 = 29 + leghtObject + 2;
-            int leghtValor = SNMPsequence[sig1];
-            for (int k = (sig1 + 1); k <= (sig1 + leghtValor); k++)
+            int sig1 = sig + 17 + leghtObject;
+            int leghtValor = SNMPsequence[sig1 + 2];
+            for (int k = (sig1 + 3); k <= (sig1 + leghtValor); k++)
             {
-                pdu.Valor = pdu.Valor + SNMPsequence[k];
+                pdu.Valor = pdu.Valor + Convert.ToChar(SNMPsequence[k]);
             }
             sequence.Snmppdu = pdu;
             return sequence;
