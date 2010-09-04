@@ -24,9 +24,7 @@ namespace SnmpMonitor {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class dsInOut : global::System.Data.DataSet {
         
-        private DataInDataTable tableDataIn;
-        
-        private DataOutDataTable tableDataOut;
+        private DataInOutDataTable tableDataInOut;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -56,11 +54,8 @@ namespace SnmpMonitor {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DataIn"] != null)) {
-                    base.Tables.Add(new DataInDataTable(ds.Tables["DataIn"]));
-                }
-                if ((ds.Tables["DataOut"] != null)) {
-                    base.Tables.Add(new DataOutDataTable(ds.Tables["DataOut"]));
+                if ((ds.Tables["DataInOut"] != null)) {
+                    base.Tables.Add(new DataInOutDataTable(ds.Tables["DataInOut"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -84,19 +79,9 @@ namespace SnmpMonitor {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataInDataTable DataIn {
+        public DataInOutDataTable DataInOut {
             get {
-                return this.tableDataIn;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataOutDataTable DataOut {
-            get {
-                return this.tableDataOut;
+                return this.tableDataInOut;
             }
         }
         
@@ -167,11 +152,8 @@ namespace SnmpMonitor {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DataIn"] != null)) {
-                    base.Tables.Add(new DataInDataTable(ds.Tables["DataIn"]));
-                }
-                if ((ds.Tables["DataOut"] != null)) {
-                    base.Tables.Add(new DataOutDataTable(ds.Tables["DataOut"]));
+                if ((ds.Tables["DataInOut"] != null)) {
+                    base.Tables.Add(new DataInOutDataTable(ds.Tables["DataInOut"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -206,16 +188,10 @@ namespace SnmpMonitor {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDataIn = ((DataInDataTable)(base.Tables["DataIn"]));
+            this.tableDataInOut = ((DataInOutDataTable)(base.Tables["DataInOut"]));
             if ((initTable == true)) {
-                if ((this.tableDataIn != null)) {
-                    this.tableDataIn.InitVars();
-                }
-            }
-            this.tableDataOut = ((DataOutDataTable)(base.Tables["DataOut"]));
-            if ((initTable == true)) {
-                if ((this.tableDataOut != null)) {
-                    this.tableDataOut.InitVars();
+                if ((this.tableDataInOut != null)) {
+                    this.tableDataInOut.InitVars();
                 }
             }
         }
@@ -228,21 +204,13 @@ namespace SnmpMonitor {
             this.Namespace = "http://tempuri.org/dsInOut.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDataIn = new DataInDataTable();
-            base.Tables.Add(this.tableDataIn);
-            this.tableDataOut = new DataOutDataTable();
-            base.Tables.Add(this.tableDataOut);
+            this.tableDataInOut = new DataInOutDataTable();
+            base.Tables.Add(this.tableDataInOut);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDataIn() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDataOut() {
+        private bool ShouldSerializeDataInOut() {
             return false;
         }
         
@@ -302,28 +270,29 @@ namespace SnmpMonitor {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DataInRowChangeEventHandler(object sender, DataInRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DataOutRowChangeEventHandler(object sender, DataOutRowChangeEvent e);
+        public delegate void DataInOutRowChangeEventHandler(object sender, DataInOutRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataInDataTable : global::System.Data.TypedTableBase<DataInRow> {
+        public partial class DataInOutDataTable : global::System.Data.TypedTableBase<DataInOutRow> {
             
             private global::System.Data.DataColumn columnTimeStamp;
             
-            private global::System.Data.DataColumn columnCounterValue;
+            private global::System.Data.DataColumn columnCounterValueIn;
             
-            private global::System.Data.DataColumn columnValue;
+            private global::System.Data.DataColumn columnValueIn;
+            
+            private global::System.Data.DataColumn columnCounterValueOut;
+            
+            private global::System.Data.DataColumn columnValueOut;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInDataTable() {
-                this.TableName = "DataIn";
+            public DataInOutDataTable() {
+                this.TableName = "DataInOut";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -331,7 +300,7 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataInDataTable(global::System.Data.DataTable table) {
+            internal DataInOutDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -348,7 +317,7 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DataInDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DataInOutDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -363,17 +332,33 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CounterValueColumn {
+            public global::System.Data.DataColumn CounterValueInColumn {
                 get {
-                    return this.columnCounterValue;
+                    return this.columnCounterValueIn;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ValueColumn {
+            public global::System.Data.DataColumn ValueInColumn {
                 get {
-                    return this.columnValue;
+                    return this.columnValueIn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CounterValueOutColumn {
+                get {
+                    return this.columnCounterValueOut;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ValueOutColumn {
+                get {
+                    return this.columnValueOut;
                 }
             }
             
@@ -388,47 +373,49 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInRow this[int index] {
+            public DataInOutRow this[int index] {
                 get {
-                    return ((DataInRow)(this.Rows[index]));
+                    return ((DataInOutRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataInRowChangeEventHandler DataInRowChanging;
+            public event DataInOutRowChangeEventHandler DataInOutRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataInRowChangeEventHandler DataInRowChanged;
+            public event DataInOutRowChangeEventHandler DataInOutRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataInRowChangeEventHandler DataInRowDeleting;
+            public event DataInOutRowChangeEventHandler DataInOutRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataInRowChangeEventHandler DataInRowDeleted;
+            public event DataInOutRowChangeEventHandler DataInOutRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDataInRow(DataInRow row) {
+            public void AddDataInOutRow(DataInOutRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInRow AddDataInRow(System.DateTime TimeStamp, int CounterValue, int Value) {
-                DataInRow rowDataInRow = ((DataInRow)(this.NewRow()));
+            public DataInOutRow AddDataInOutRow(System.DateTime TimeStamp, int CounterValueIn, int ValueIn, int CounterValueOut, int ValueOut) {
+                DataInOutRow rowDataInOutRow = ((DataInOutRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TimeStamp,
-                        CounterValue,
-                        Value};
-                rowDataInRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataInRow);
-                return rowDataInRow;
+                        CounterValueIn,
+                        ValueIn,
+                        CounterValueOut,
+                        ValueOut};
+                rowDataInOutRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataInOutRow);
+                return rowDataInOutRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataInDataTable cln = ((DataInDataTable)(base.Clone()));
+                DataInOutDataTable cln = ((DataInOutDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -436,15 +423,17 @@ namespace SnmpMonitor {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataInDataTable();
+                return new DataInOutDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnTimeStamp = base.Columns["TimeStamp"];
-                this.columnCounterValue = base.Columns["CounterValue"];
-                this.columnValue = base.Columns["Value"];
+                this.columnCounterValueIn = base.Columns["CounterValueIn"];
+                this.columnValueIn = base.Columns["ValueIn"];
+                this.columnCounterValueOut = base.Columns["CounterValueOut"];
+                this.columnValueOut = base.Columns["ValueOut"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -452,36 +441,41 @@ namespace SnmpMonitor {
             private void InitClass() {
                 this.columnTimeStamp = new global::System.Data.DataColumn("TimeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTimeStamp);
-                this.columnCounterValue = new global::System.Data.DataColumn("CounterValue", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCounterValue);
-                this.columnValue = new global::System.Data.DataColumn("Value", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnValue);
+                this.columnCounterValueIn = new global::System.Data.DataColumn("CounterValueIn", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCounterValueIn);
+                this.columnValueIn = new global::System.Data.DataColumn("ValueIn", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValueIn);
+                this.columnCounterValueOut = new global::System.Data.DataColumn("CounterValueOut", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCounterValueOut);
+                this.columnValueOut = new global::System.Data.DataColumn("ValueOut", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnValueOut);
+                this.columnCounterValueOut.Caption = "CounterValueIn";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInRow NewDataInRow() {
-                return ((DataInRow)(this.NewRow()));
+            public DataInOutRow NewDataInOutRow() {
+                return ((DataInOutRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataInRow(builder);
+                return new DataInOutRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataInRow);
+                return typeof(DataInOutRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataInRowChanged != null)) {
-                    this.DataInRowChanged(this, new DataInRowChangeEvent(((DataInRow)(e.Row)), e.Action));
+                if ((this.DataInOutRowChanged != null)) {
+                    this.DataInOutRowChanged(this, new DataInOutRowChangeEvent(((DataInOutRow)(e.Row)), e.Action));
                 }
             }
             
@@ -489,8 +483,8 @@ namespace SnmpMonitor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataInRowChanging != null)) {
-                    this.DataInRowChanging(this, new DataInRowChangeEvent(((DataInRow)(e.Row)), e.Action));
+                if ((this.DataInOutRowChanging != null)) {
+                    this.DataInOutRowChanging(this, new DataInOutRowChangeEvent(((DataInOutRow)(e.Row)), e.Action));
                 }
             }
             
@@ -498,8 +492,8 @@ namespace SnmpMonitor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataInRowDeleted != null)) {
-                    this.DataInRowDeleted(this, new DataInRowChangeEvent(((DataInRow)(e.Row)), e.Action));
+                if ((this.DataInOutRowDeleted != null)) {
+                    this.DataInOutRowDeleted(this, new DataInOutRowChangeEvent(((DataInOutRow)(e.Row)), e.Action));
                 }
             }
             
@@ -507,14 +501,14 @@ namespace SnmpMonitor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataInRowDeleting != null)) {
-                    this.DataInRowDeleting(this, new DataInRowChangeEvent(((DataInRow)(e.Row)), e.Action));
+                if ((this.DataInOutRowDeleting != null)) {
+                    this.DataInOutRowDeleting(this, new DataInOutRowChangeEvent(((DataInOutRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDataInRow(DataInRow row) {
+            public void RemoveDataInOutRow(DataInOutRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -541,282 +535,7 @@ namespace SnmpMonitor {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataInDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataOutDataTable : global::System.Data.TypedTableBase<DataOutRow> {
-            
-            private global::System.Data.DataColumn columnTimeStamp;
-            
-            private global::System.Data.DataColumn columnCounterValue;
-            
-            private global::System.Data.DataColumn columnValue;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataOutDataTable() {
-                this.TableName = "DataOut";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataOutDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DataOutDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TimeStampColumn {
-                get {
-                    return this.columnTimeStamp;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CounterValueColumn {
-                get {
-                    return this.columnCounterValue;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ValueColumn {
-                get {
-                    return this.columnValue;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataOutRow this[int index] {
-                get {
-                    return ((DataOutRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataOutRowChangeEventHandler DataOutRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataOutRowChangeEventHandler DataOutRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataOutRowChangeEventHandler DataOutRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DataOutRowChangeEventHandler DataOutRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDataOutRow(DataOutRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataOutRow AddDataOutRow(System.DateTime TimeStamp, int CounterValue, int Value) {
-                DataOutRow rowDataOutRow = ((DataOutRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        TimeStamp,
-                        CounterValue,
-                        Value};
-                rowDataOutRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataOutRow);
-                return rowDataOutRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                DataOutDataTable cln = ((DataOutDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new DataOutDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnTimeStamp = base.Columns["TimeStamp"];
-                this.columnCounterValue = base.Columns["CounterValue"];
-                this.columnValue = base.Columns["Value"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnTimeStamp = new global::System.Data.DataColumn("TimeStamp", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTimeStamp);
-                this.columnCounterValue = new global::System.Data.DataColumn("CounterValue", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCounterValue);
-                this.columnValue = new global::System.Data.DataColumn("Value", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnValue);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataOutRow NewDataOutRow() {
-                return ((DataOutRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataOutRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(DataOutRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.DataOutRowChanged != null)) {
-                    this.DataOutRowChanged(this, new DataOutRowChangeEvent(((DataOutRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.DataOutRowChanging != null)) {
-                    this.DataOutRowChanging(this, new DataOutRowChangeEvent(((DataOutRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.DataOutRowDeleted != null)) {
-                    this.DataOutRowDeleted(this, new DataOutRowChangeEvent(((DataOutRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.DataOutRowDeleting != null)) {
-                    this.DataOutRowDeleting(this, new DataOutRowChangeEvent(((DataOutRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDataOutRow(DataOutRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                dsInOut ds = new dsInOut();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataOutDataTable";
+                attribute2.FixedValue = "DataInOutDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -860,15 +579,15 @@ namespace SnmpMonitor {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataInRow : global::System.Data.DataRow {
+        public partial class DataInOutRow : global::System.Data.DataRow {
             
-            private DataInDataTable tableDataIn;
+            private DataInOutDataTable tableDataInOut;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataInRow(global::System.Data.DataRowBuilder rb) : 
+            internal DataInOutRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataIn = ((DataInDataTable)(this.Table));
+                this.tableDataInOut = ((DataInOutDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -876,182 +595,139 @@ namespace SnmpMonitor {
             public System.DateTime TimeStamp {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableDataIn.TimeStampColumn]));
+                        return ((global::System.DateTime)(this[this.tableDataInOut.TimeStampColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TimeStamp\' in table \'DataIn\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TimeStamp\' in table \'DataInOut\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataIn.TimeStampColumn] = value;
+                    this[this.tableDataInOut.TimeStampColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CounterValue {
+            public int CounterValueIn {
                 get {
                     try {
-                        return ((int)(this[this.tableDataIn.CounterValueColumn]));
+                        return ((int)(this[this.tableDataInOut.CounterValueInColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CounterValue\' in table \'DataIn\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CounterValueIn\' in table \'DataInOut\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataIn.CounterValueColumn] = value;
+                    this[this.tableDataInOut.CounterValueInColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Value {
+            public int ValueIn {
                 get {
                     try {
-                        return ((int)(this[this.tableDataIn.ValueColumn]));
+                        return ((int)(this[this.tableDataInOut.ValueInColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Value\' in table \'DataIn\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ValueIn\' in table \'DataInOut\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataIn.ValueColumn] = value;
+                    this[this.tableDataInOut.ValueInColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CounterValueOut {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataInOut.CounterValueOutColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CounterValueOut\' in table \'DataInOut\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataInOut.CounterValueOutColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ValueOut {
+                get {
+                    try {
+                        return ((int)(this[this.tableDataInOut.ValueOutColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ValueOut\' in table \'DataInOut\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataInOut.ValueOutColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTimeStampNull() {
-                return this.IsNull(this.tableDataIn.TimeStampColumn);
+                return this.IsNull(this.tableDataInOut.TimeStampColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTimeStampNull() {
-                this[this.tableDataIn.TimeStampColumn] = global::System.Convert.DBNull;
+                this[this.tableDataInOut.TimeStampColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCounterValueNull() {
-                return this.IsNull(this.tableDataIn.CounterValueColumn);
+            public bool IsCounterValueInNull() {
+                return this.IsNull(this.tableDataInOut.CounterValueInColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCounterValueNull() {
-                this[this.tableDataIn.CounterValueColumn] = global::System.Convert.DBNull;
+            public void SetCounterValueInNull() {
+                this[this.tableDataInOut.CounterValueInColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsValueNull() {
-                return this.IsNull(this.tableDataIn.ValueColumn);
+            public bool IsValueInNull() {
+                return this.IsNull(this.tableDataInOut.ValueInColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetValueNull() {
-                this[this.tableDataIn.ValueColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class DataOutRow : global::System.Data.DataRow {
-            
-            private DataOutDataTable tableDataOut;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DataOutRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableDataOut = ((DataOutDataTable)(this.Table));
+            public void SetValueInNull() {
+                this[this.tableDataInOut.ValueInColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime TimeStamp {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableDataOut.TimeStampColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TimeStamp\' in table \'DataOut\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataOut.TimeStampColumn] = value;
-                }
+            public bool IsCounterValueOutNull() {
+                return this.IsNull(this.tableDataInOut.CounterValueOutColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CounterValue {
-                get {
-                    try {
-                        return ((int)(this[this.tableDataOut.CounterValueColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CounterValue\' in table \'DataOut\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataOut.CounterValueColumn] = value;
-                }
+            public void SetCounterValueOutNull() {
+                this[this.tableDataInOut.CounterValueOutColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Value {
-                get {
-                    try {
-                        return ((int)(this[this.tableDataOut.ValueColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Value\' in table \'DataOut\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDataOut.ValueColumn] = value;
-                }
+            public bool IsValueOutNull() {
+                return this.IsNull(this.tableDataInOut.ValueOutColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTimeStampNull() {
-                return this.IsNull(this.tableDataOut.TimeStampColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTimeStampNull() {
-                this[this.tableDataOut.TimeStampColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCounterValueNull() {
-                return this.IsNull(this.tableDataOut.CounterValueColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCounterValueNull() {
-                this[this.tableDataOut.CounterValueColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsValueNull() {
-                return this.IsNull(this.tableDataOut.ValueColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetValueNull() {
-                this[this.tableDataOut.ValueColumn] = global::System.Convert.DBNull;
+            public void SetValueOutNull() {
+                this[this.tableDataInOut.ValueOutColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1059,56 +735,22 @@ namespace SnmpMonitor {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DataInRowChangeEvent : global::System.EventArgs {
+        public class DataInOutRowChangeEvent : global::System.EventArgs {
             
-            private DataInRow eventRow;
+            private DataInOutRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInRowChangeEvent(DataInRow row, global::System.Data.DataRowAction action) {
+            public DataInOutRowChangeEvent(DataInOutRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DataOutRowChangeEvent : global::System.EventArgs {
-            
-            private DataOutRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataOutRowChangeEvent(DataOutRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataOutRow Row {
+            public DataInOutRow Row {
                 get {
                     return this.eventRow;
                 }
