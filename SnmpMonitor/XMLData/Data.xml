@@ -4,5 +4,7 @@
     <MIBDataOut valor =""/>
     <HostName valor =""/>
     <HostIP valor="" />
+    <Community valor=""/>
+    <ISPUpTime valor=""/>
   </Parametros>
 </Data>
