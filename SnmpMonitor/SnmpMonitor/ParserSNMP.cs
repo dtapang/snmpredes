@@ -19,7 +19,7 @@ namespace SnmpMonitor
             sig = sig + 2 + length;
 
             length = SNMPsequence[sig + 2];
-            for (int i = (sig + 3) ; i <= (sig + 2 + length); i++)
+            for (int i = (sig + 3) ; i < (sig + 2 + length); i++)
             {
                 sequence.Community = sequence.Community + Convert.ToChar(SNMPsequence[i]);
             }
@@ -45,18 +45,18 @@ namespace SnmpMonitor
             sig = sig + 2;
 
             length = SNMPsequence[sig + 2];
-            for (int j = (sig + 3); j <= (sig + 2 + length); j++)
+            for (int j = (sig + 3); j < (sig + 2 + length); j++)
             {
                 pdu.ObjectIdentifier = pdu.ObjectIdentifier + Convert.ToChar(SNMPsequence[j]);
             }
             sig = sig + 2 + length;
 
 
-            String prueba = Convert.ToString(SNMPsequence[sig]);
+            String prueba = Convert.ToString(SNMPsequence[sig + 2]);
 
             length = SNMPsequence[sig + 2];
             String type;
-            switch (SNMPsequence[sig + 1])
+            switch (SNMPsequence[sig + 2])
             {
                 case (0x02):
                     type = "Integer";
@@ -86,7 +86,7 @@ namespace SnmpMonitor
                     type = "";
                     break;
             }
-            for (int k = (sig + 3); k <= (sig + 2 + length); k++)
+            for (int k = (sig + 3); k < (sig + 2 + length); k++)
             {
                 if (type == "Integer")
                 {
