@@ -11,6 +11,8 @@ namespace SnmpMonitor
 {
     public partial class frmMonitor : Form
     {
+        SnmpConector snc;
+        SNMP sn;
         public frmMonitor()
         {
             InitializeComponent();
@@ -18,9 +20,8 @@ namespace SnmpMonitor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //SnmpConector s = new SnmpConector();
-            //s.Probar();
-            SNMP sn = new SNMP();
+            tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
+            tmrPoll.Start();
             try
             {
                 Byte[] resultado = sn.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
@@ -66,6 +67,14 @@ namespace SnmpMonitor
             }
             MessageBox.Show("Data type = " + type + "\rMessage length = " + lenght);
 
+        }
+
+        private void frmMonitor_Load(object sender, EventArgs e)
+        {
+            this.sn = new SNMP();
+            this.snc = new SnmpConector();
+            this.txtAgentIP.Text  = snc.AgentIP;
+            this.txtComunity.Text = snc.Community;
         }
 
     }

@@ -1,10 +1,14 @@
 ﻿<Data>
   <Parametros>
-    <MIBDataIn valor =""/>
-    <MIBDataOut valor =""/>
-    <HostName valor =""/>
-    <HostIP valor="" />
-    <Community valor=""/>
+    <HostName valor="localhost"/>
+    <HostIP valor="127.0.0.1"/>
+    <Community valor="public"/>
     <ISPUpTime valor=""/>
   </Parametros>
+  <Configuracion>
+    <PollInterval valor="1500"/>
+    <MonitorTime valor="10"/>
+    <MIBDataIn valor="1.3.6.1.2.1.2.2.1.10"/>
+    <MIBDataOut valor="1.3.6.1.2.1.2.2.1.16"/>
+  </Configuracion>
 </Data>

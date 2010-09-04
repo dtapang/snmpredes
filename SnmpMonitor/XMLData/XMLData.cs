@@ -5,30 +5,30 @@ using System.Text;
 using System.Xml;
 using System.IO;
 
-namespace Base
+namespace XMLData
 {
-    class XMLData
+    public class XMLData
     {
         XmlDocument doc;
         XmlReader reader;
         public XMLData()
         {
             doc = new XmlDocument();
-            string path = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "conexion.xml");
+            string path = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "Data.xml");
             reader = XmlReader.Create(path);
             doc.Load(reader);
         }
-        public string GetParametro(string parametro)
+        public string GetDato(string branch, string parametro)
         {
             String valor = "";
-            XmlNode nodo = doc.SelectSingleNode("/Data/Parametros");
+            XmlNode nodo = doc.SelectSingleNode("/Data/" + branch);
             valor = nodo[parametro].Attributes["valor"].Value;
             valor.Trim();
             return valor;
         }
-        public void SetParametro(string parametro, string valor)
+        public void SetDato(string branch, string parametro, string valor)
         {
-            XmlNode nodo = doc.SelectSingleNode("/Data/Parametros");
+            XmlNode nodo = doc.SelectSingleNode("/Data/" + branch);
             nodo[parametro].Attributes["valor"].Value = valor;
         }
     }
