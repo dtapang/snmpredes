@@ -57,8 +57,8 @@ namespace SnmpMonitor
             MessageBox.Show(datosIn.Snmppdu.Valor);
             Int32 datoInActual = 0;
             Int32 datoOutActual = 0;
-            IEnumerable<int> queryIn = 
-            this.inTable.AddDataInRow(DateTime.Now, datoInActual, datoInActual);
+            //IEnumerable<int> queryIn = 
+            //this.inTable.AddDataInRow(DateTime.Now, datoInActual, datoInActual);
             
         }
 
