@@ -39,8 +39,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtComunity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtComunity = new System.Windows.Forms.TextBox();
             this.tmrPoll = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -126,13 +126,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // txtComunity
-            // 
-            this.txtComunity.Location = new System.Drawing.Point(315, 46);
-            this.txtComunity.Name = "txtComunity";
-            this.txtComunity.Size = new System.Drawing.Size(141, 20);
-            this.txtComunity.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -141,6 +134,17 @@
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Comunity";
+            // 
+            // txtComunity
+            // 
+            this.txtComunity.Location = new System.Drawing.Point(315, 46);
+            this.txtComunity.Name = "txtComunity";
+            this.txtComunity.Size = new System.Drawing.Size(141, 20);
+            this.txtComunity.TabIndex = 2;
+            // 
+            // tmrPoll
+            // 
+            this.tmrPoll.Tick += new System.EventHandler(this.tmrPoll_Tick);
             // 
             // frmMonitor
             // 
