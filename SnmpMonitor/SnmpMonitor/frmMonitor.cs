@@ -51,7 +51,7 @@ namespace SnmpMonitor
             SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
             Int32 datoInActual = 0;
             Int32 datoOutActual = 0;
-            ds.Tables;
+            //ds.Tables;
              
             
         }
