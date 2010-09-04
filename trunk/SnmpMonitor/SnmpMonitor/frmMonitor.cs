@@ -20,7 +20,8 @@ namespace SnmpMonitor
         private Int32 counterIn = 0;
         private Int32 counterOut = 0;
         private ParserSNMP parser;
-        private dsInOut ds;
+        private dsInOut.DataInDataTable inTable;
+        private dsInOut.DataOutDataTable outTable;
         
 
         public frmMonitor()
@@ -30,13 +31,17 @@ namespace SnmpMonitor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.ds = new dsInOut();
+            this.inTable = new dsInOut.DataInDataTable();
+            this.outTable = new dsInOut.DataOutDataTable();
             tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
-            tmrPoll.Start();
+            //tmrPoll.Start();
             try
             {
                 Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
-                ParseSNMPMessage(resultado);
+                ParserSNMP parser = new ParserSNMP();
+                SNMPSequence seq = parser.ObtenerValor(resultado);
+                MessageBox.Show(seq.Snmppdu.Valor);
+                //ParseSNMPMessage(resultado);
             }
             catch (Exception ex)
             {
@@ -49,10 +54,11 @@ namespace SnmpMonitor
             Byte[] resultadoOut = snmp.get(SNMP.Request.getNext, this.agent, this.comunity, this.MibOut);
             SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
             SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
+            MessageBox.Show(datosIn.Snmppdu.Valor);
             Int32 datoInActual = 0;
             Int32 datoOutActual = 0;
-            //ds.Tables;
-             
+            IEnumerable<int> queryIn = 
+            this.inTable.AddDataInRow(DateTime.Now, datoInActual, datoInActual);
             
         }
 
@@ -108,6 +114,11 @@ namespace SnmpMonitor
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
             this.parser = new ParserSNMP();
+        }
+
+        private void tmrPoll_Tick(object sender, EventArgs e)
+        {
+            Poll();
         }
 
     }
