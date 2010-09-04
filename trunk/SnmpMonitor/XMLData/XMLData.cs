@@ -17,6 +17,7 @@ namespace XMLData
             string path = Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "Data.xml");
             reader = XmlReader.Create(path);
             doc.Load(reader);
+            reader.Close();
         }
         public string GetDato(string branch, string parametro)
         {
@@ -30,6 +31,7 @@ namespace XMLData
         {
             XmlNode nodo = doc.SelectSingleNode("/Data/" + branch);
             nodo[parametro].Attributes["valor"].Value = valor;
+            doc.Save("Data.xml");
         }
     }
 }

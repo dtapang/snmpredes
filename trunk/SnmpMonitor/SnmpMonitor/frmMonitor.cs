@@ -29,23 +29,7 @@ namespace SnmpMonitor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.inOutTable = new dsInOut.DataInOutDataTable();
-            tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
-            tmrPoll.Start();
-            try
-            {
-                
-                //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
-                Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.2.2.1.10.12");
-                ParserSNMP parser = new ParserSNMP();
-                SNMPSequence seq = parser.ObtenerValor(resultado);
-                MessageBox.Show(seq.Snmppdu.Valor);
-                //ParseSNMPMessage(resultado);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            Start();
         }
         private void Poll()
         {
@@ -56,17 +40,26 @@ namespace SnmpMonitor
                 Byte[] resultadoOut = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibOut);
                 SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
                 SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
-                //MessageBox.Show(datosIn.Snmppdu.Valor);
                 Int32 datoInActual = r.Next(0, 100);
                 Int32 datoOutActual = r.Next(0, 100);
+                this.txtIn.Text = datoInActual.ToString();
+                this.txtOut.Text = datoOutActual.ToString();
                 //Int32 datoInActual = Convert.ToInt32(datosIn.Snmppdu.Valor);
                 //Int32 datoOutActual = Convert.ToInt32(datosOut.Snmppdu.Valor);
                 this.inOutTable.AddDataInOutRow(DateTime.Now, datoInActual, datoInActual, datoOutActual, datoOutActual);
-                chartInOut.DataSource = this.inOutTable.Rows;
-                //.Select("TimeStamp > " + DateTime.Now.AddMinutes(-10));
-                chartInOut.Series[0].YValueMembers = "ValueIn";
-                chartInOut.ResumeLayout();
-                //chartInOut.Series[1].YValueMembers = "ValueOut";
+
+                string expression = "TimeStamp > '" + DateTime.Now.AddMinutes(-10).ToString() + "'";
+                chartInOut.DataSource = this.inOutTable.Select(expression);
+                
+                chartInOut.Series["DataIn"].YValueMembers = "ValueIn";
+                chartInOut.Series["DataIn"].XValueMember = "TimeStamp";
+                chartInOut.Series["DataIn"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+
+                chartInOut.Series["DataOut"].YValueMembers = "ValueOut";
+                chartInOut.Series["DataOut"].XValueMember = "TimeStamp";
+                chartInOut.Series["DataOut"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+                   
+                chartInOut.DataBind();
                 
             }
             catch (Exception ex)
@@ -122,8 +115,8 @@ namespace SnmpMonitor
             this.snc = new SnmpConector();
             this.comunity = snc.Community;
             this.agent = snc.AgentIP;
-            this.txtAgentIP.Text = this.agent;
-            this.txtComunity.Text = this.comunity;
+            this.tooltxtAgent.Text = this.agent;
+            this.tooltxtComunity.Text = this.comunity;
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
             this.parser = new ParserSNMP();
@@ -132,6 +125,78 @@ namespace SnmpMonitor
         private void tmrPoll_Tick(object sender, EventArgs e)
         {
             Poll();
+        }
+        private void Stop()
+        {
+            tmrPoll.Stop();
+        }
+        private void Start()
+        {
+            this.inOutTable = new dsInOut.DataInOutDataTable();
+            tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
+            tmrPoll.Start();
+            try
+            {
+
+                //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
+                Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.2.2.1.10.12");
+                ParserSNMP parser = new ParserSNMP();
+                SNMPSequence seq = parser.ObtenerValor(resultado);
+                MessageBox.Show(seq.Snmppdu.Valor);
+                //ParseSNMPMessage(resultado);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Start();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Stop();
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            Stop();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void configureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConfigMonitor f = new frmConfigMonitor();
+            f.ShowDialog();
+        }
+
+        private void tooltxtAgent_Leave(object sender, EventArgs e)
+        {
+            if (tooltxtAgent.Text != "")
+            {
+                snc.AgentIP = tooltxtAgent.Text;
+            }
+        }
+
+        private void tooltxtComunity_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tooltxtComunity.Text != "")
+                {
+                    snc.Community = tooltxtComunity.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
     }
