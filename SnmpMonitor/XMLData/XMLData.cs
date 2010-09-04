@@ -26,5 +26,10 @@ namespace Base
             valor.Trim();
             return valor;
         }
+        public void SetParametro(string parametro, string valor)
+        {
+            XmlNode nodo = doc.SelectSingleNode("/Data/Parametros");
+            nodo[parametro].Attributes["valor"].Value = valor;
+        }
     }
 }
