@@ -21,11 +21,6 @@ namespace SnmpMonitor
             GetResponsePDU = 0xA2,
             SetRequestPDU = 0xA3
         }
-        private System.Collections.ArrayList canales;
-        public Object ObtenerCanal(int numCanal)
-        {
-            return this.canales[numCanal];
-        }
         public enum Request
         {
             get = 1,
