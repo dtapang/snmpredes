@@ -12,21 +12,14 @@
   <xs:element name="dsInOut" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsInOut" msprop:Generator_UserDSName="dsInOut">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataIn" msprop:Generator_TableClassName="DataInDataTable" msprop:Generator_TableVarName="tableDataIn" msprop:Generator_TablePropName="DataIn" msprop:Generator_RowDeletingName="DataInRowDeleting" msprop:Generator_UserTableName="DataIn" msprop:Generator_RowChangingName="DataInRowChanging" msprop:Generator_RowEvHandlerName="DataInRowChangeEventHandler" msprop:Generator_RowDeletedName="DataInRowDeleted" msprop:Generator_RowEvArgName="DataInRowChangeEvent" msprop:Generator_RowChangedName="DataInRowChanged" msprop:Generator_RowClassName="DataInRow">
+        <xs:element name="DataInOut" msprop:Generator_TableClassName="DataInOutDataTable" msprop:Generator_TableVarName="tableDataInOut" msprop:Generator_TablePropName="DataInOut" msprop:Generator_RowDeletingName="DataInOutRowDeleting" msprop:Generator_UserTableName="DataInOut" msprop:Generator_RowChangingName="DataInOutRowChanging" msprop:Generator_RowEvHandlerName="DataInOutRowChangeEventHandler" msprop:Generator_RowDeletedName="DataInOutRowDeleted" msprop:Generator_RowEvArgName="DataInOutRowChangeEvent" msprop:Generator_RowChangedName="DataInOutRowChanged" msprop:Generator_RowClassName="DataInOutRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TimeStamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="CounterValue" msprop:Generator_ColumnVarNameInTable="columnCounterValue" msprop:Generator_ColumnPropNameInRow="CounterValue" msprop:Generator_ColumnPropNameInTable="CounterValueColumn" msprop:Generator_UserColumnName="CounterValue" type="xs:int" minOccurs="0" />
-              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:int" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="DataOut" msprop:Generator_TableClassName="DataOutDataTable" msprop:Generator_TableVarName="tableDataOut" msprop:Generator_TablePropName="DataOut" msprop:Generator_RowDeletingName="DataOutRowDeleting" msprop:Generator_UserTableName="DataOut" msprop:Generator_RowChangingName="DataOutRowChanging" msprop:Generator_RowEvHandlerName="DataOutRowChangeEventHandler" msprop:Generator_RowDeletedName="DataOutRowDeleted" msprop:Generator_RowEvArgName="DataOutRowChangeEvent" msprop:Generator_RowChangedName="DataOutRowChanged" msprop:Generator_RowClassName="DataOutRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="TimeStamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="CounterValue" msprop:Generator_ColumnVarNameInTable="columnCounterValue" msprop:Generator_ColumnPropNameInRow="CounterValue" msprop:Generator_ColumnPropNameInTable="CounterValueColumn" msprop:Generator_UserColumnName="CounterValue" type="xs:int" minOccurs="0" />
-              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:int" minOccurs="0" />
+              <xs:element name="CounterValueIn" msprop:Generator_ColumnVarNameInTable="columnCounterValueIn" msprop:Generator_ColumnPropNameInRow="CounterValueIn" msprop:Generator_ColumnPropNameInTable="CounterValueInColumn" msprop:Generator_UserColumnName="CounterValueIn" type="xs:int" minOccurs="0" />
+              <xs:element name="ValueIn" msprop:Generator_ColumnVarNameInTable="columnValueIn" msprop:Generator_ColumnPropNameInRow="ValueIn" msprop:Generator_ColumnPropNameInTable="ValueInColumn" msprop:Generator_UserColumnName="ValueIn" type="xs:int" minOccurs="0" />
+              <xs:element name="CounterValueOut" msdata:Caption="CounterValueIn" msprop:Generator_ColumnVarNameInTable="columnCounterValueOut" msprop:Generator_ColumnPropNameInRow="CounterValueOut" msprop:Generator_ColumnPropNameInTable="CounterValueOutColumn" msprop:Generator_UserColumnName="CounterValueOut" type="xs:int" minOccurs="0" />
+              <xs:element name="ValueOut" msprop:Generator_ColumnVarNameInTable="columnValueOut" msprop:Generator_ColumnPropNameInRow="ValueOut" msprop:Generator_ColumnPropNameInTable="ValueOutColumn" msprop:Generator_UserColumnName="ValueOut" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
