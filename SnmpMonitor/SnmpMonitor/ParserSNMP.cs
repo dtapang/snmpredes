@@ -10,27 +10,53 @@ namespace SnmpMonitor
         public SNMPSequence ObtenerValor(Byte[] SNMPsequence){
 
             SNMPSequence sequence = new SNMPSequence();
-            sequence.Snmpversion = SNMPsequence[4];
-            int lengthCommunity = SNMPsequence[6];
-            for (int i = 7; i <= (6 + lengthCommunity); i++)
+                        
+            int sig = 1;
+            int length = 0;
+
+            length = SNMPsequence[sig + 2];
+            sequence.Snmpversion = SNMPsequence[sig + 3];
+            sig = sig + 2 + length;
+
+            length = SNMPsequence[sig + 2];
+            for (int i = (sig + 3) ; i <= (sig + 2 + length); i++)
             {
                 sequence.Community = sequence.Community + Convert.ToChar(SNMPsequence[i]);
             }
-            int sig = 6 + lengthCommunity;
+            sig = sig + 2 + length;
+
+            sig = sig + 2;
+
             SNMPPDU pdu = new SNMPPDU();
-            pdu.RequestID = SNMPsequence[sig + 5];
-            pdu.Error = SNMPsequence[sig + 8];
-            pdu.Index = SNMPsequence[sig + 11];
-            int leghtObject = SNMPsequence[sig + 17];
-            for (int j = (sig + 17 + 1); j <= (sig + 17 + leghtObject); j++)
+
+            length = SNMPsequence[sig + 2];
+            pdu.RequestID = SNMPsequence[sig + 3];
+            sig = sig + 2 + length;
+            
+            length = SNMPsequence[sig + 2];
+            pdu.Error = SNMPsequence[sig + 3];
+            sig = sig + 2 + length;
+
+            length = SNMPsequence[sig + 2];
+            pdu.Index = SNMPsequence[sig + 3];
+            sig = sig + 2 + length;
+
+            sig = sig + 2;
+            sig = sig + 2;
+
+            length = SNMPsequence[sig + 2];
+            for (int j = (sig + 3); j <= (sig + 2 + length); j++)
             {
                 pdu.ObjectIdentifier = pdu.ObjectIdentifier + Convert.ToChar(SNMPsequence[j]);
             }
-            int sig1 = sig + 17 + leghtObject;
+            sig = sig + 2 + length;
 
+
+            String prueba = Convert.ToString(SNMPsequence[sig]);
+
+            length = SNMPsequence[sig + 2];
             String type;
-
-            switch (SNMPsequence[sig1 + 1])
+            switch (SNMPsequence[sig + 1])
             {
                 case (0x02):
                     type = "Integer";
@@ -60,9 +86,7 @@ namespace SnmpMonitor
                     type = "";
                     break;
             }
-            
-            int leghtValor = SNMPsequence[sig1 + 2];
-            for (int k = (sig1 + 3); k <= (sig1 + 2 + leghtValor); k++)
+            for (int k = (sig + 3); k <= (sig + 2 + length); k++)
             {
                 if (type == "Integer")
                 {
