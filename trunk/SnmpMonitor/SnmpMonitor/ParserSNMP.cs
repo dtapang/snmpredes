@@ -66,7 +66,7 @@ namespace SnmpMonitor
             {
                 if (type == "Integer")
                 {
-                    pdu.Valor = pdu.Valor + Convert.ToChar(SNMPsequence[k]);
+                    pdu.Valor = pdu.Valor + Convert.ToInt32(SNMPsequence[k]);
                 }
                 else
                 {
