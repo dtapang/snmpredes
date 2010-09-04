@@ -1,6 +1,6 @@
 ﻿namespace SnmpMonitor
 {
-    partial class Form1
+    partial class frmMonitor
     {
         /// <summary>
         /// Required designer variable.
