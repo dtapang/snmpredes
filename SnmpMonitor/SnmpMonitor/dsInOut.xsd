@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsInOut" targetNamespace="http://tempuri.org/dsInOut.xsd" xmlns:mstns="http://tempuri.org/dsInOut.xsd" xmlns="http://tempuri.org/dsInOut.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsInOut" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsInOut" msprop:Generator_UserDSName="dsInOut">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataIn" msprop:Generator_TableClassName="DataInDataTable" msprop:Generator_TableVarName="tableDataIn" msprop:Generator_TablePropName="DataIn" msprop:Generator_RowDeletingName="DataInRowDeleting" msprop:Generator_UserTableName="DataIn" msprop:Generator_RowChangingName="DataInRowChanging" msprop:Generator_RowEvHandlerName="DataInRowChangeEventHandler" msprop:Generator_RowDeletedName="DataInRowDeleted" msprop:Generator_RowEvArgName="DataInRowChangeEvent" msprop:Generator_RowChangedName="DataInRowChanged" msprop:Generator_RowClassName="DataInRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TimeStamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CounterValue" msprop:Generator_ColumnVarNameInTable="columnCounterValue" msprop:Generator_ColumnPropNameInRow="CounterValue" msprop:Generator_ColumnPropNameInTable="CounterValueColumn" msprop:Generator_UserColumnName="CounterValue" type="xs:int" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataOut" msprop:Generator_TableClassName="DataOutDataTable" msprop:Generator_TableVarName="tableDataOut" msprop:Generator_TablePropName="DataOut" msprop:Generator_RowDeletingName="DataOutRowDeleting" msprop:Generator_UserTableName="DataOut" msprop:Generator_RowChangingName="DataOutRowChanging" msprop:Generator_RowEvHandlerName="DataOutRowChangeEventHandler" msprop:Generator_RowDeletedName="DataOutRowDeleted" msprop:Generator_RowEvArgName="DataOutRowChangeEvent" msprop:Generator_RowChangedName="DataOutRowChanged" msprop:Generator_RowClassName="DataOutRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TimeStamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CounterValue" msprop:Generator_ColumnVarNameInTable="columnCounterValue" msprop:Generator_ColumnPropNameInRow="CounterValue" msprop:Generator_ColumnPropNameInTable="CounterValueColumn" msprop:Generator_UserColumnName="CounterValue" type="xs:int" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

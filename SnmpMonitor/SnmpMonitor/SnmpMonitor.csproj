@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dsInOut.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsInOut.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmConfigMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +86,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="dsInOut.xsc">
+      <DependentUpon>dsInOut.xsd</DependentUpon>
+    </None>
+    <None Include="dsInOut.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsInOut.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsInOut.xss">
+      <DependentUpon>dsInOut.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
