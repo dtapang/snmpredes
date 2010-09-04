@@ -126,6 +126,17 @@ namespace SnmpMonitor
         {
             Poll();
         }
+        private void Save()
+        {
+            try
+            {
+ 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void Stop()
         {
             tmrPoll.Stop();
@@ -199,5 +210,9 @@ namespace SnmpMonitor
             }
         }
 
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
     }
 }
