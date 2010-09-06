@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMonitor));
             this.chartInOut = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -73,23 +73,23 @@
             // 
             // chartInOut
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartInOut.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.chartInOut.ChartAreas.Add(chartArea3);
             this.chartInOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartInOut.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            this.chartInOut.Legends.Add(legend3);
             this.chartInOut.Location = new System.Drawing.Point(0, 0);
             this.chartInOut.Name = "chartInOut";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Legend = "Legend1";
-            series1.Name = "DataIn";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "DataOut";
-            this.chartInOut.Series.Add(series1);
-            this.chartInOut.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series5.Legend = "Legend1";
+            series5.Name = "DataIn";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "Legend1";
+            series6.Name = "DataOut";
+            this.chartInOut.Series.Add(series5);
+            this.chartInOut.Series.Add(series6);
             this.chartInOut.Size = new System.Drawing.Size(706, 263);
             this.chartInOut.TabIndex = 1;
             this.chartInOut.Text = "chart1";
@@ -327,6 +327,8 @@
             // 
             this.tooltxtAvailability.Name = "tooltxtAvailability";
             this.tooltxtAvailability.Size = new System.Drawing.Size(100, 47);
+            this.tooltxtAvailability.Leave += new System.EventHandler(this.tooltxtAvailability_Leave);
+            this.tooltxtAvailability.Click += new System.EventHandler(this.tooltxtAvailability_Click);
             // 
             // frmMonitor
             // 
