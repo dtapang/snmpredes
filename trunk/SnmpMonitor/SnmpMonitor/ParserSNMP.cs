@@ -10,7 +10,7 @@ namespace SnmpMonitor
         private Int32 ByteToInt(Byte[] datos)
         {
             int k = 0;
-            Byte[] datosInvertidos = new Byte[datos.Length - 1];
+            Byte[] datosInvertidos = new Byte[datos.Length];
             for (int i = datos.Length - 1; i >= 0; i--)
             {
                 datosInvertidos[k++] = datos[i];
@@ -99,7 +99,7 @@ namespace SnmpMonitor
             }
             Byte[] valorFinal = new Byte[length];
             int indice = 0;
-            //valorFinal[indice++] = 0;
+            
             for (int k = (sig + 3); k < (sig + 3 + length); k++)
             {
                 valorFinal[indice++] = SNMPsequence[k];
@@ -117,8 +117,6 @@ namespace SnmpMonitor
                 }
                 else
                 {
-                    //string valorInvento = BitConverter.ToString(valorFinal, 0);
-                    //int valorInvento = Convert.ToInt32("0x01B93D37",16);
                     int valorInt = ByteToInt(valorFinal);
                     pdu.Valor = valorInt.ToString();
                 }
