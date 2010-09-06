@@ -3,7 +3,7 @@
     <HostName valor="localhost"/>
     <HostIP valor="127.0.0.1"/>
     <Community valor="public"/>
-    <ISPUpTime valor=""/>
+    <ISPUpTime valor="99"/>
   </Parametros>
   <Configuracion>
     <PollInterval valor="1500"/>

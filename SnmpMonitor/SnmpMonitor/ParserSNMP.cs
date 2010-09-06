@@ -7,6 +7,17 @@ namespace SnmpMonitor
 {
     class ParserSNMP
     {
+        private Int32 ByteToInt(Byte[] datos)
+        {
+            int k = 0;
+            Byte[] datosInvertidos = new Byte[datos.Length - 1];
+            for (int i = datos.Length - 1; i >= 0; i--)
+            {
+                datosInvertidos[k++] = datos[i];
+            }
+            Int32 resultado = BitConverter.ToInt32(datosInvertidos, 0);
+            return resultado;
+        }
         public SNMPSequence ObtenerValor(Byte[] SNMPsequence){
 
             SNMPSequence sequence = new SNMPSequence();
@@ -86,24 +97,49 @@ namespace SnmpMonitor
                     type = "";
                     break;
             }
-            for (int k = (sig + 3); k < (sig + 2 + length); k++)
+            Byte[] valorFinal = new Byte[length];
+            int indice = 0;
+            //valorFinal[indice++] = 0;
+            for (int k = (sig + 3); k < (sig + 3 + length); k++)
             {
-                if (type == "Integer")
+                valorFinal[indice++] = SNMPsequence[k];
+            }
+            if (type == "Integer")
+            {
+                int valorInt = BitConverter.ToInt32(valorFinal, 1);
+                pdu.Valor = valorInt.ToString();
+            }
+            else
+            {
+                if (type == "Null")
                 {
-                    pdu.Valor = pdu.Valor + Convert.ToInt32(SNMPsequence[k]);
+                    pdu.Valor = pdu.Valor + "";
                 }
                 else
                 {
-                    if (type == "Null")
-                    {
-                        pdu.Valor = pdu.Valor + "";
-                    }
-                    else
-                    {
-                        pdu.Valor = pdu.Valor + Convert.ToChar(SNMPsequence[k]);
-                    }
+                    //string valorInvento = BitConverter.ToString(valorFinal, 0);
+                    //int valorInvento = Convert.ToInt32("0x01B93D37",16);
+                    int valorInt = ByteToInt(valorFinal);
+                    pdu.Valor = valorInt.ToString();
                 }
             }
+                //if (type == "Integer")
+                //{
+                //    pdu.Valor = pdu.Valor + Convert.ToInt32(SNMPsequence[k]);
+                //}
+                //else
+                //{
+                //    if (type == "Null")
+                //    {
+                //        pdu.Valor = pdu.Valor + "";
+                //    }
+                //    else
+                //    {
+                //        pdu.Valor = pdu.Valor + Convert.ToChar(SNMPsequence[k]);
+                //    }
+                //}
+            
+                        
             sequence.Snmppdu = pdu;
             return sequence;
         }

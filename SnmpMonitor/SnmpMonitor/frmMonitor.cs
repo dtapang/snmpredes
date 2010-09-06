@@ -17,6 +17,7 @@ namespace SnmpMonitor
         private string agent;
         private string MibIn;
         private string MibOut;
+        private int availability;
         private Int32 counterIn = 0;
         private Int32 counterOut = 0;
         private ParserSNMP parser;
@@ -115,8 +116,11 @@ namespace SnmpMonitor
             this.snc = new SnmpConector();
             this.comunity = snc.Community;
             this.agent = snc.AgentIP;
+            string avail = snc.Availability;
+            this.availability = Convert.ToInt32(avail);
             this.tooltxtAgent.Text = this.agent;
             this.tooltxtComunity.Text = this.comunity;
+            this.tooltxtAvailability.Text = this.availability.ToString() + "%";
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
             this.parser = new ParserSNMP();
@@ -130,7 +134,9 @@ namespace SnmpMonitor
         {
             try
             {
- 
+                snc.Community = this.comunity;
+                snc.AgentIP = this.agent;
+                snc.Availability = this.availability.ToString();
             }
             catch (Exception ex)
             {
@@ -143,11 +149,12 @@ namespace SnmpMonitor
         }
         private void Start()
         {
-            this.inOutTable = new dsInOut.DataInOutDataTable();
-            tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
-            tmrPoll.Start();
+            
             try
             {
+                this.inOutTable = new dsInOut.DataInOutDataTable();
+                tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
+                tmrPoll.Start();
 
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
                 Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.2.2.1.10.12");
@@ -189,30 +196,39 @@ namespace SnmpMonitor
 
         private void tooltxtAgent_Leave(object sender, EventArgs e)
         {
-            if (tooltxtAgent.Text != "")
-            {
-                snc.AgentIP = tooltxtAgent.Text;
-            }
+            this.agent = tooltxtAgent.Text;
         }
 
         private void tooltxtComunity_Leave(object sender, EventArgs e)
         {
+            this.comunity = tooltxtComunity.Text;
+        }
+        private void tooltxtAvailability_Leave(object sender, EventArgs e)
+        {
             try
             {
-                if (tooltxtComunity.Text != "")
-                {
-                    snc.Community = tooltxtComunity.Text;
-                }
+                String avail = tooltxtAvailability.Text;
+                avail = avail.Replace("%", "");
+                this.availability = Convert.ToInt32(avail);
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Solamente se permiten los siguientes caracteres:\n\r {1,2,3,4,5,6,7,8,9,0,%}");
+                this.tooltxtAvailability.Focus();
             }
+            
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             Save();
         }
+
+        private void tooltxtAvailability_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
