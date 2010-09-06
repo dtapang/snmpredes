@@ -154,7 +154,7 @@ namespace SnmpMonitor
             {
                 this.inOutTable = new dsInOut.DataInOutDataTable();
                 tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
-                tmrPoll.Start();
+                //tmrPoll.Start();
 
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
                 Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.2.2.1.10.12");
