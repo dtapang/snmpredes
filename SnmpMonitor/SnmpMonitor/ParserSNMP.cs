@@ -9,8 +9,9 @@ namespace SnmpMonitor
     {
         private Int32 ByteToInt(Byte[] datos)
         {
-            int k = 0;
-            Byte[] datosInvertidos = new Byte[datos.Length];
+            int k = 4 - datos.Length;
+            Byte[] datosInvertidos = new Byte[4];
+            datosInvertidos.Initialize();
             for (int i = datos.Length - 1; i >= 0; i--)
             {
                 datosInvertidos[k++] = datos[i];

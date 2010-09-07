@@ -11,6 +11,9 @@ namespace SnmpMonitor
 {
     public partial class frmMonitor : Form
     {
+        private int errorCount = 0;
+        private Int32 valorAnteriorIn;
+        private Int32 valorAnteriorOut;
         private SnmpConector snc;
         private SNMP snmp;
         private string comunity;
@@ -18,8 +21,6 @@ namespace SnmpMonitor
         private string MibIn;
         private string MibOut;
         private int availability;
-        private Int32 counterIn = 0;
-        private Int32 counterOut = 0;
         private ParserSNMP parser;
         private dsInOut.DataInOutDataTable inOutTable;
         
@@ -41,13 +42,21 @@ namespace SnmpMonitor
                 Byte[] resultadoOut = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibOut);
                 SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
                 SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
-                Int32 datoInActual = r.Next(0, 100);
-                Int32 datoOutActual = r.Next(0, 100);
-                this.txtIn.Text = datoInActual.ToString();
-                this.txtOut.Text = datoOutActual.ToString();
-                //Int32 datoInActual = Convert.ToInt32(datosIn.Snmppdu.Valor);
-                //Int32 datoOutActual = Convert.ToInt32(datosOut.Snmppdu.Valor);
-                this.inOutTable.AddDataInOutRow(DateTime.Now, datoInActual, datoInActual, datoOutActual, datoOutActual);
+                
+                //Int32 datoInActual = r.Next(0, 100);
+                //Int32 datoOutActual = r.Next(0, 100);
+                //Int32 datoInKbps = datoInActual;
+                //Int32 datoOutKbps = datoOutActual;
+
+                Int32 datoInActual = Convert.ToInt32(datosIn.Snmppdu.Valor);
+                Int32 datoOutActual = Convert.ToInt32(datosOut.Snmppdu.Valor);
+                Int32 datoInKbps = DatosKbpsIn(datoInActual);
+                Int32 datoOutKbps = DatosKbpsOut(datoOutActual);
+
+                this.txtIn.Text = datoInKbps.ToString();
+                this.txtOut.Text = datoOutKbps.ToString();
+
+                this.inOutTable.AddDataInOutRow(DateTime.Now, datoInActual, datoInKbps, datoOutActual, datoOutKbps);
 
                 string expression = "TimeStamp > '" + DateTime.Now.AddMinutes(-10).ToString() + "'";
                 chartInOut.DataSource = this.inOutTable.Select(expression);
@@ -65,6 +74,12 @@ namespace SnmpMonitor
             }
             catch (Exception ex)
             {
+                errorCount++;
+                if (errorCount > 2)
+                {
+                    Stop();
+                    errorCount = 0;
+                }
                 MessageBox.Show(ex.Message);
             }
         }
@@ -152,15 +167,18 @@ namespace SnmpMonitor
             
             try
             {
+                valorAnteriorIn = 0;
+                valorAnteriorOut = 0;
                 this.inOutTable = new dsInOut.DataInOutDataTable();
                 tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
-                //tmrPoll.Start();
+                tmrPoll.Start();
 
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
                 Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.2.2.1.10.12");
                 ParserSNMP parser = new ParserSNMP();
                 SNMPSequence seq = parser.ObtenerValor(resultado);
-                MessageBox.Show(seq.Snmppdu.Valor);
+                valorAnteriorIn = Convert.ToInt32(seq.Snmppdu.Valor);
+                valorAnteriorOut = 0;
                 //ParseSNMPMessage(resultado);
             }
             catch (Exception ex)
@@ -227,6 +245,30 @@ namespace SnmpMonitor
         private void tooltxtAvailability_Click(object sender, EventArgs e)
         {
 
+        }
+        private Int32 DatosKbpsOut(Int32 datoActual)
+        {
+            Int32 datoKbps = 0;
+            if (datoActual < this.valorAnteriorOut)
+            { }
+            else
+            {
+                datoKbps = datoActual - this.valorAnteriorOut;
+            }
+            this.valorAnteriorOut = datoActual; ;
+            return datoKbps / 1024;
+        }
+        private Int32 DatosKbpsIn(Int32 datoActual)
+        {
+            Int32 datoKbps = 0;
+            if (datoActual < this.valorAnteriorIn)
+            { }
+            else
+            {
+                datoKbps = datoActual - this.valorAnteriorIn;
+            }
+            this.valorAnteriorIn = datoActual;
+            return datoKbps / 1024;
         }
 
        
