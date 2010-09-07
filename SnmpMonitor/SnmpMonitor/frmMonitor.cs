@@ -37,7 +37,7 @@ namespace SnmpMonitor
         {
             try
             {
-                Random r = new Random();
+                //Random r = new Random();
                 Byte[] resultadoIn = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibIn);
                 Byte[] resultadoOut = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibOut);
                 SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
