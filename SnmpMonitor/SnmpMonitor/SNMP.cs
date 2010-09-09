@@ -132,7 +132,12 @@ namespace SnmpMonitor
           sock.SetSocketOption(SocketOptionLevel.Socket,
                           SocketOptionName.ReceiveTimeout, 5000);
           IPHostEntry ihe = Dns.GetHostEntry(host);
-          IPEndPoint iep = new IPEndPoint(ihe.AddressList[1], 161);
+          int indiceIP = 0;
+          if (ihe.AddressList.Count() > 1)
+          {
+              indiceIP = 1;
+          }
+          IPEndPoint iep = new IPEndPoint(ihe.AddressList[indiceIP], 161);
           EndPoint ep = (EndPoint)iep;
           sock.SendTo(packet, snmplen, SocketFlags.None, iep);
 

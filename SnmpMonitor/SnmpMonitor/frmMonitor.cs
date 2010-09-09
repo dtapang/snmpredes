@@ -12,6 +12,8 @@ namespace SnmpMonitor
     public partial class frmMonitor : Form
     {
         private int errorCount = 0;
+        private PollCounter32 dataInPoller;
+        private PollCounter32 dataOutPoller;
         private Int32 valorAnteriorIn;
         private Int32 valorAnteriorOut;
         private SnmpConector snc;
@@ -37,26 +39,30 @@ namespace SnmpMonitor
         {
             try
             {
+                this.dataInPoller.Poll();
+                this.dataOutPoller.Poll();
                 //Random r = new Random();
-                Byte[] resultadoIn = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibIn);
-                Byte[] resultadoOut = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibOut);
-                SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
-                SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
+                //Byte[] resultadoIn = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibIn);
+                //Byte[] resultadoOut = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibOut);
+                //SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
+                //SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
                 
                 //Int32 datoInActual = r.Next(0, 100);
                 //Int32 datoOutActual = r.Next(0, 100);
                 //Int32 datoInKbps = datoInActual;
                 //Int32 datoOutKbps = datoOutActual;
 
-                Int32 datoInActual = Convert.ToInt32(datosIn.Snmppdu.Valor);
-                Int32 datoOutActual = Convert.ToInt32(datosOut.Snmppdu.Valor);
-                Int32 datoInKbps = DatosKbpsIn(datoInActual);
-                Int32 datoOutKbps = DatosKbpsOut(datoOutActual);
+                //Int32 datoInActual = Convert.ToInt32(datosIn.Snmppdu.Valor);
+                //Int32 datoOutActual = Convert.ToInt32(datosOut.Snmppdu.Valor);
+                //Int32 datoInKbps = DatosKbps(datoInActual);
+                //Int32 datoOutKbps = DatosKbps(datoOutActual);
+                Int32 datoInKbps = DatosKbps(this.dataInPoller.CounterDiff);
+                Int32 datoOutKbps = DatosKbps(this.dataOutPoller.CounterDiff);
 
                 this.txtIn.Text = datoInKbps.ToString();
                 this.txtOut.Text = datoOutKbps.ToString();
 
-                this.inOutTable.AddDataInOutRow(DateTime.Now, datoInActual, datoInKbps, datoOutActual, datoOutKbps);
+                this.inOutTable.AddDataInOutRow(DateTime.Now, this.dataInPoller.Counter, datoInKbps, this.dataOutPoller.Counter, datoOutKbps);
 
                 string expression = "TimeStamp > '" + DateTime.Now.AddMinutes(-10).ToString() + "'";
                 chartInOut.DataSource = this.inOutTable.Select(expression);
@@ -84,43 +90,6 @@ namespace SnmpMonitor
             }
         }
 
-        public void ParseSNMPMessage(Byte[] message)
-        {
-            Byte typeByte = message[0];
-            Byte lenghtByte = message[1];
-            String type = "";
-            int lenght = Convert.ToInt32(lenghtByte);
-            switch (typeByte)
-            {
-                case (0x02):
-                    type = "Integer";
-                    break;
-                case (0x04):
-                    type = "Octet String";
-                    break;
-                case (0x05):
-                    type = "Null";
-                    break;
-                case (0x06):
-                    type = "Object identifier";
-                    break;
-                case (0x30):
-                    type = "Sequence";
-                    break;
-                case (0xA0):
-                    type = "GetRequestPDU";
-                    break;
-                case (0xA2):
-                    type = "GetResponsePDU";
-                    break;
-                case (0xA3):
-                    type = "SetRequestPDU";
-                    break;
-            }
-            MessageBox.Show("Data type = " + type + "\rMessage length = " + lenght);
-
-        }
-
         private void frmMonitor_Load(object sender, EventArgs e)
         {
             InicializarVariables();
@@ -139,6 +108,8 @@ namespace SnmpMonitor
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
             this.parser = new ParserSNMP();
+            this.dataInPoller = new PollCounter32(this.agent, this.MibIn, this.comunity);
+            this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, this.comunity);
         }
 
         private void tmrPoll_Tick(object sender, EventArgs e)
@@ -167,19 +138,22 @@ namespace SnmpMonitor
             
             try
             {
-                valorAnteriorIn = 0;
-                valorAnteriorOut = 0;
+                //valorAnteriorIn = 0;
+                //valorAnteriorOut = 0;
                 this.inOutTable = new dsInOut.DataInOutDataTable();
                 tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
                 tmrPoll.Start();
+                this.dataInPoller.Poll();
+                this.dataOutPoller.Poll();
 
-                //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
-                Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.2.2.1.10.12");
+                ////Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");"1.3.6.1.2.1.2.2.1.10.12"
+                Byte[] resultado = snmp.get(SNMP.Request.get, "127.0.0.1", "public", this.MibIn + ".12");
                 ParserSNMP parser = new ParserSNMP();
                 SNMPSequence seq = parser.ObtenerValor(resultado);
-                valorAnteriorIn = Convert.ToInt32(seq.Snmppdu.Valor);
-                valorAnteriorOut = 0;
-                //ParseSNMPMessage(resultado);
+                MessageBox.Show(seq.Snmppdu.Valor.ToString());
+                //valorAnteriorIn = Convert.ToInt32(seq.Snmppdu.Valor);
+                //valorAnteriorOut = 0;
+                ////ParseSNMPMessage(resultado);
             }
             catch (Exception ex)
             {
@@ -268,6 +242,12 @@ namespace SnmpMonitor
                 datoKbps = (datoActual - this.valorAnteriorIn) / (this.tmrPoll.Interval / 1000);
             }
             this.valorAnteriorIn = datoActual;
+            return datoKbps / 1024;
+        }
+        private Int32 DatosKbps(Int32 valorIntervalo)
+        {
+            Int32 datoKbps = 0;
+            datoKbps = valorIntervalo / (this.tmrPoll.Interval / 1000);
             return datoKbps / 1024;
         }
 
