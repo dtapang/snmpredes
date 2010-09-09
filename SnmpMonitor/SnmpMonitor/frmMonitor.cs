@@ -253,7 +253,7 @@ namespace SnmpMonitor
             { }
             else
             {
-                datoKbps = datoActual - this.valorAnteriorOut;
+                datoKbps = (datoActual - this.valorAnteriorOut) / (this.tmrPoll.Interval / 1000);
             }
             this.valorAnteriorOut = datoActual; ;
             return datoKbps / 1024;
@@ -265,7 +265,7 @@ namespace SnmpMonitor
             { }
             else
             {
-                datoKbps = datoActual - this.valorAnteriorIn;
+                datoKbps = (datoActual - this.valorAnteriorIn) / (this.tmrPoll.Interval / 1000);
             }
             this.valorAnteriorIn = datoActual;
             return datoKbps / 1024;

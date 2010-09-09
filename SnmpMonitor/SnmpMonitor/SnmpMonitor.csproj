@@ -68,7 +68,9 @@
     <Compile Include="frmMonitor.Designer.cs">
       <DependentUpon>frmMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPoller.cs" />
     <Compile Include="ParserSNMP.cs" />
+    <Compile Include="PollCounter32.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SNMP.cs" />
