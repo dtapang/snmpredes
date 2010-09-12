@@ -62,6 +62,13 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripPrgbr = new System.Windows.Forms.ToolStripProgressBar();
+            this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
+            this.toolStripKbin = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripKbout = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,12 +76,15 @@
             this.splitContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chartInOut
             // 
             chartArea1.Name = "ChartArea1";
             this.chartInOut.ChartAreas.Add(chartArea1);
+            this.chartInOut.ContextMenuStrip = this.contextMenuStrip1;
             this.chartInOut.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chartInOut.Legends.Add(legend1);
@@ -330,11 +340,66 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripPrgbr,
+            this.toolStripKbin,
+            this.toolStripKbout});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 357);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(706, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripPrgbr
+            // 
+            this.toolStripPrgbr.Enabled = false;
+            this.toolStripPrgbr.MarqueeAnimationSpeed = 0;
+            this.toolStripPrgbr.Name = "toolStripPrgbr";
+            this.toolStripPrgbr.Size = new System.Drawing.Size(100, 16);
+            this.toolStripPrgbr.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.toolStripPrgbr.Click += new System.EventHandler(this.toolStripPrgbr_Click);
+            // 
+            // tmrSeconds
+            // 
+            this.tmrSeconds.Interval = 500;
+            this.tmrSeconds.Tick += new System.EventHandler(this.tmrSeconds_Tick);
+            // 
+            // toolStripKbin
+            // 
+            this.toolStripKbin.Name = "toolStripKbin";
+            this.toolStripKbin.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.toolStripKbin.Size = new System.Drawing.Size(86, 17);
+            this.toolStripKbin.Text = "Data In: 0";
+            // 
+            // toolStripKbout
+            // 
+            this.toolStripKbout.Name = "toolStripKbout";
+            this.toolStripKbout.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.toolStripKbout.Size = new System.Drawing.Size(96, 17);
+            this.toolStripKbout.Text = "Data Out: 0";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verDatosToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
+            // 
+            // verDatosToolStripMenuItem
+            // 
+            this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
+            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.verDatosToolStripMenuItem.Text = "Ver datos";
+            this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
+            // 
             // frmMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 379);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -352,6 +417,9 @@
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,6 +455,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripTextBox tooltxtAvailability;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripPrgbr;
+        private System.Windows.Forms.Timer tmrSeconds;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripKbin;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripKbout;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem verDatosToolStripMenuItem;
     }
 }
 

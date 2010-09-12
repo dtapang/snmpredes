@@ -399,7 +399,7 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataInOutRow AddDataInOutRow(System.DateTime TimeStamp, int CounterValueIn, int ValueIn, int CounterValueOut, int ValueOut) {
+            public DataInOutRow AddDataInOutRow(System.DateTime TimeStamp, int CounterValueIn, double ValueIn, int CounterValueOut, double ValueOut) {
                 DataInOutRow rowDataInOutRow = ((DataInOutRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TimeStamp,
@@ -443,11 +443,11 @@ namespace SnmpMonitor {
                 base.Columns.Add(this.columnTimeStamp);
                 this.columnCounterValueIn = new global::System.Data.DataColumn("CounterValueIn", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCounterValueIn);
-                this.columnValueIn = new global::System.Data.DataColumn("ValueIn", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnValueIn = new global::System.Data.DataColumn("ValueIn", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValueIn);
                 this.columnCounterValueOut = new global::System.Data.DataColumn("CounterValueOut", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCounterValueOut);
-                this.columnValueOut = new global::System.Data.DataColumn("ValueOut", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnValueOut = new global::System.Data.DataColumn("ValueOut", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValueOut);
                 this.columnCounterValueOut.Caption = "CounterValueIn";
             }
@@ -624,10 +624,10 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ValueIn {
+            public double ValueIn {
                 get {
                     try {
-                        return ((int)(this[this.tableDataInOut.ValueInColumn]));
+                        return ((double)(this[this.tableDataInOut.ValueInColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ValueIn\' in table \'DataInOut\' is DBNull.", e);
@@ -656,10 +656,10 @@ namespace SnmpMonitor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ValueOut {
+            public double ValueOut {
                 get {
                     try {
-                        return ((int)(this[this.tableDataInOut.ValueOutColumn]));
+                        return ((double)(this[this.tableDataInOut.ValueOutColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'ValueOut\' in table \'DataInOut\' is DBNull.", e);

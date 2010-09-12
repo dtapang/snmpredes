@@ -14,8 +14,6 @@ namespace SnmpMonitor
         private int errorCount = 0;
         private PollCounter32 dataInPoller;
         private PollCounter32 dataOutPoller;
-        private Int32 valorAnteriorIn;
-        private Int32 valorAnteriorOut;
         private SnmpConector snc;
         private SNMP snmp;
         private string comunity;
@@ -41,26 +39,14 @@ namespace SnmpMonitor
             {
                 this.dataInPoller.Poll();
                 this.dataOutPoller.Poll();
-                //Random r = new Random();
-                //Byte[] resultadoIn = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibIn);
-                //Byte[] resultadoOut = snmp.get(SNMP.Request.get, "localhost", this.comunity, this.MibOut);
-                //SNMPSequence datosIn = parser.ObtenerValor(resultadoIn);
-                //SNMPSequence datosOut = parser.ObtenerValor(resultadoOut);
                 
-                //Int32 datoInActual = r.Next(0, 100);
-                //Int32 datoOutActual = r.Next(0, 100);
-                //Int32 datoInKbps = datoInActual;
-                //Int32 datoOutKbps = datoOutActual;
-
-                //Int32 datoInActual = Convert.ToInt32(datosIn.Snmppdu.Valor);
-                //Int32 datoOutActual = Convert.ToInt32(datosOut.Snmppdu.Valor);
-                //Int32 datoInKbps = DatosKbps(datoInActual);
-                //Int32 datoOutKbps = DatosKbps(datoOutActual);
-                Int32 datoInKbps = DatosKbps(this.dataInPoller.CounterDiff);
-                Int32 datoOutKbps = DatosKbps(this.dataOutPoller.CounterDiff);
+                double datoInKbps = DatosKbps(this.dataInPoller.CounterDiff);
+                double datoOutKbps = DatosKbps(this.dataOutPoller.CounterDiff);
 
                 this.txtIn.Text = datoInKbps.ToString();
                 this.txtOut.Text = datoOutKbps.ToString();
+                this.toolStripKbin.Text = "Data In: " + datoInKbps.ToString() + " Kb/s";
+                this.toolStripKbout.Text = "Data Out: " + datoOutKbps.ToString() + " Kb/s";
 
                 this.inOutTable.AddDataInOutRow(DateTime.Now, this.dataInPoller.Counter, datoInKbps, this.dataOutPoller.Counter, datoOutKbps);
 
@@ -108,8 +94,9 @@ namespace SnmpMonitor
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
             this.parser = new ParserSNMP();
-            this.dataInPoller = new PollCounter32(this.agent, this.MibIn, this.comunity);
-            this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, this.comunity);
+            int interfaceIndex = Convert.ToInt32(snc.InterfaceIndex);
+            this.dataInPoller = new PollCounter32(this.agent, this.MibIn, interfaceIndex, this.comunity);
+            this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, interfaceIndex, this.comunity);
         }
 
         private void tmrPoll_Tick(object sender, EventArgs e)
@@ -132,28 +119,27 @@ namespace SnmpMonitor
         private void Stop()
         {
             tmrPoll.Stop();
+            DetenerProgressBar();
         }
         private void Start()
         {
             
             try
             {
-                //valorAnteriorIn = 0;
-                //valorAnteriorOut = 0;
                 this.inOutTable = new dsInOut.DataInOutDataTable();
                 tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
-                tmrPoll.Start();
                 this.dataInPoller.Poll();
                 this.dataOutPoller.Poll();
+                InicializarProgressBar(Convert.ToInt32(this.snc.PollInterval));
+                tmrPoll.Start();
 
-                ////Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");"1.3.6.1.2.1.2.2.1.10.12"
-                Byte[] resultado = snmp.get(SNMP.Request.get, "127.0.0.1", "public", this.MibIn + ".12");
-                ParserSNMP parser = new ParserSNMP();
-                SNMPSequence seq = parser.ObtenerValor(resultado);
-                MessageBox.Show(seq.Snmppdu.Valor.ToString());
-                //valorAnteriorIn = Convert.ToInt32(seq.Snmppdu.Valor);
-                //valorAnteriorOut = 0;
-                ////ParseSNMPMessage(resultado);
+                //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
+                //"1.3.6.1.2.1.2.2.1.10.12"
+                //Byte[] resultado = snmp.get(SNMP.Request.get, "127.0.0.1", "public", this.MibIn + ".12");
+                //ParserSNMP parser = new ParserSNMP();
+                //SNMPSequence seq = parser.ObtenerValor(resultado);
+                //MessageBox.Show(seq.Snmppdu.Valor.ToString());
+                //ParseSNMPMessage(resultado);
             }
             catch (Exception ex)
             {
@@ -182,7 +168,7 @@ namespace SnmpMonitor
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmConfigMonitor f = new frmConfigMonitor();
+            frmConfigMonitor f = new frmConfigMonitor(this.snc);
             f.ShowDialog();
         }
 
@@ -220,35 +206,71 @@ namespace SnmpMonitor
         {
 
         }
-        private Int32 DatosKbpsOut(Int32 datoActual)
+        private double DatosKbps(Int32 valorIntervalo)
         {
-            Int32 datoKbps = 0;
-            if (datoActual < this.valorAnteriorOut)
-            { }
-            else
-            {
-                datoKbps = (datoActual - this.valorAnteriorOut) / (this.tmrPoll.Interval / 1000);
-            }
-            this.valorAnteriorOut = datoActual; ;
-            return datoKbps / 1024;
-        }
-        private Int32 DatosKbpsIn(Int32 datoActual)
-        {
-            Int32 datoKbps = 0;
-            if (datoActual < this.valorAnteriorIn)
-            { }
-            else
-            {
-                datoKbps = (datoActual - this.valorAnteriorIn) / (this.tmrPoll.Interval / 1000);
-            }
-            this.valorAnteriorIn = datoActual;
-            return datoKbps / 1024;
-        }
-        private Int32 DatosKbps(Int32 valorIntervalo)
-        {
-            Int32 datoKbps = 0;
+            double datoKbps = 0;
             datoKbps = valorIntervalo / (this.tmrPoll.Interval / 1000);
-            return datoKbps / 1024;
+            datoKbps = datoKbps / 1024;
+            return Math.Round(datoKbps, 2);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tmrSeconds_Tick(object sender, EventArgs e)
+        {
+            if (this.toolStripPrgbr.Style == ProgressBarStyle.Marquee)
+            {
+                //this.toolStripPrgbr.MarqueeAnimationSpeed = 100;
+            }
+            else
+            {
+                this.toolStripPrgbr.PerformStep();
+                if (this.toolStripPrgbr.ProgressBar.Value == this.toolStripPrgbr.Maximum)
+                {
+                    this.toolStripPrgbr.Value = this.toolStripPrgbr.Minimum;
+                }
+            }
+        }
+        private void InicializarProgressBar(int intervalo)
+        {
+            this.toolStripPrgbr.Value = this.toolStripPrgbr.Minimum;
+            if (this.toolStripPrgbr.Style == ProgressBarStyle.Marquee)
+            {
+                this.toolStripPrgbr.Maximum = 100;
+                this.toolStripPrgbr.Step = 10;
+                this.toolStripPrgbr.MarqueeAnimationSpeed = 100;
+            }
+            else
+            {
+                this.toolStripPrgbr.Maximum = intervalo - 500;
+                this.toolStripPrgbr.Step = 500;
+            }
+            this.tmrSeconds.Start();
+        }
+        private void DetenerProgressBar()
+        {
+            if (this.toolStripPrgbr.Style == ProgressBarStyle.Marquee)
+            {
+                this.toolStripPrgbr.MarqueeAnimationSpeed = 0;
+            }
+            this.toolStripPrgbr.Value = this.toolStripPrgbr.Minimum;
+            this.tmrSeconds.Stop();
+            
+        }
+        private void toolStripPrgbr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGridDatos g = new frmGridDatos();
+            g.dataGridView1.DataSource = this.inOutTable;
+            g.dataGridView1.Refresh();
+            g.Show();
         }
 
        
