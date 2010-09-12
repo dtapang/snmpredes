@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SnmpMonitor
 {
-    class SnmpConector
+    public class SnmpConector
     {
         private XMLData.XMLData datos;
         public SnmpConector()
@@ -80,6 +80,14 @@ namespace SnmpMonitor
         {
             get { return this.datos.GetDato("Configuracion", "MonitorTime"); }
             set { this.datos.SetDato("Configuracion", "MonitorTime", value); }
+        }
+        /// <summary>
+        /// Indice de la interfaz a consultar
+        /// </summary>
+        public String InterfaceIndex
+        {
+            get { return this.datos.GetDato("Configuracion", "InterfaceIndex"); }
+            set { this.datos.SetDato("Configuracion", "InterfaceIndex", value); }
         }
         #endregion
         //public void Probar()

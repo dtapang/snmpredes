@@ -18,7 +18,7 @@ namespace SnmpMonitor
         private String writeComunity = "private";
         private int interfaceIndex = 12;
 
-        public PollCounter32(String snmpAgent, String mib, String readComunity = "public", String writeComunity = "private")
+        public PollCounter32(String snmpAgent, String mib, int interfaceIndex, String readComunity = "public", String writeComunity = "private")
         {
             this.mib = mib;
             this.snmpAgent = snmpAgent;
@@ -26,6 +26,7 @@ namespace SnmpMonitor
             this.writeComunity = writeComunity;
             this.snmp = new SNMP();
             this.parser = new ParserSNMP();
+            this.interfaceIndex = interfaceIndex;
         }
         public void Poll()
         {

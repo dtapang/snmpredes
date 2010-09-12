@@ -62,6 +62,12 @@
     <Compile Include="frmConfigMonitor.Designer.cs">
       <DependentUpon>frmConfigMonitor.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGridDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGridDatos.Designer.cs">
+      <DependentUpon>frmGridDatos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     <EmbeddedResource Include="frmConfigMonitor.resx">
       <DependentUpon>frmConfigMonitor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGridDatos.resx">
+      <DependentUpon>frmGridDatos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMonitor.resx">
       <DependentUpon>frmMonitor.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +100,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="dsInOut.xsc">
       <DependentUpon>dsInOut.xsd</DependentUpon>
@@ -118,6 +128,9 @@
       <Project>{4FE0B811-A467-46E6-9A58-01A997DBD755}</Project>
       <Name>XMLData</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

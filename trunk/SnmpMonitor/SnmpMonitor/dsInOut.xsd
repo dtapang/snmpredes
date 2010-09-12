@@ -17,9 +17,9 @@
             <xs:sequence>
               <xs:element name="TimeStamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:dateTime" minOccurs="0" />
               <xs:element name="CounterValueIn" msprop:Generator_ColumnVarNameInTable="columnCounterValueIn" msprop:Generator_ColumnPropNameInRow="CounterValueIn" msprop:Generator_ColumnPropNameInTable="CounterValueInColumn" msprop:Generator_UserColumnName="CounterValueIn" type="xs:int" minOccurs="0" />
-              <xs:element name="ValueIn" msprop:Generator_ColumnVarNameInTable="columnValueIn" msprop:Generator_ColumnPropNameInRow="ValueIn" msprop:Generator_ColumnPropNameInTable="ValueInColumn" msprop:Generator_UserColumnName="ValueIn" type="xs:int" minOccurs="0" />
+              <xs:element name="ValueIn" msprop:Generator_ColumnVarNameInTable="columnValueIn" msprop:Generator_ColumnPropNameInRow="ValueIn" msprop:Generator_ColumnPropNameInTable="ValueInColumn" msprop:Generator_UserColumnName="ValueIn" type="xs:double" minOccurs="0" />
               <xs:element name="CounterValueOut" msdata:Caption="CounterValueIn" msprop:Generator_ColumnVarNameInTable="columnCounterValueOut" msprop:Generator_ColumnPropNameInRow="CounterValueOut" msprop:Generator_ColumnPropNameInTable="CounterValueOutColumn" msprop:Generator_UserColumnName="CounterValueOut" type="xs:int" minOccurs="0" />
-              <xs:element name="ValueOut" msprop:Generator_ColumnVarNameInTable="columnValueOut" msprop:Generator_ColumnPropNameInRow="ValueOut" msprop:Generator_ColumnPropNameInTable="ValueOutColumn" msprop:Generator_UserColumnName="ValueOut" type="xs:int" minOccurs="0" />
+              <xs:element name="ValueOut" msprop:Generator_ColumnVarNameInTable="columnValueOut" msprop:Generator_ColumnPropNameInRow="ValueOut" msprop:Generator_ColumnPropNameInTable="ValueOutColumn" msprop:Generator_UserColumnName="ValueOut" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
