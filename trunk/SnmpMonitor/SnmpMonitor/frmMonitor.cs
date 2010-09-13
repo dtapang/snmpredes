@@ -273,6 +273,12 @@ namespace SnmpMonitor
             g.Show();
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAbout f = new frmAbout();
+            f.ShowDialog();
+        }
+
        
     }
 }

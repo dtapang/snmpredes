@@ -35,6 +35,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMonitor));
             this.chartInOut = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.txtOut = new System.Windows.Forms.TextBox();
@@ -64,12 +66,11 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripPrgbr = new System.Windows.Forms.ToolStripProgressBar();
-            this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
             this.toolStripKbin = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripKbout = new System.Windows.Forms.ToolStripStatusLabel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -77,7 +78,6 @@
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chartInOut
@@ -103,6 +103,20 @@
             this.chartInOut.Size = new System.Drawing.Size(706, 263);
             this.chartInOut.TabIndex = 1;
             this.chartInOut.Text = "chart1";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verDatosToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
+            // 
+            // verDatosToolStripMenuItem
+            // 
+            this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
+            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.verDatosToolStripMenuItem.Text = "Ver datos";
+            this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -315,14 +329,14 @@
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.configureToolStripMenuItem.Text = "Configure";
             this.configureToolStripMenuItem.Click += new System.EventHandler(this.configureToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -337,8 +351,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -361,11 +376,6 @@
             this.toolStripPrgbr.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.toolStripPrgbr.Click += new System.EventHandler(this.toolStripPrgbr_Click);
             // 
-            // tmrSeconds
-            // 
-            this.tmrSeconds.Interval = 500;
-            this.tmrSeconds.Tick += new System.EventHandler(this.tmrSeconds_Tick);
-            // 
             // toolStripKbin
             // 
             this.toolStripKbin.Name = "toolStripKbin";
@@ -380,19 +390,10 @@
             this.toolStripKbout.Size = new System.Drawing.Size(96, 17);
             this.toolStripKbout.Text = "Data Out: 0";
             // 
-            // contextMenuStrip1
+            // tmrSeconds
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verDatosToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
-            // 
-            // verDatosToolStripMenuItem
-            // 
-            this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
-            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.verDatosToolStripMenuItem.Text = "Ver datos";
-            this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
+            this.tmrSeconds.Interval = 500;
+            this.tmrSeconds.Tick += new System.EventHandler(this.tmrSeconds_Tick);
             // 
             // frmMonitor
             // 
@@ -408,6 +409,7 @@
             this.Text = "SNMP Monitor";
             this.Load += new System.EventHandler(this.frmMonitor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -419,7 +421,6 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
