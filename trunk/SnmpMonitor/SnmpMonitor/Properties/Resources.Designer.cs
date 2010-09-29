@@ -73,5 +73,19 @@ namespace SnmpMonitor.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap trap_send {
+            get {
+                object obj = ResourceManager.GetObject("trap send", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap trap_send1 {
+            get {
+                object obj = ResourceManager.GetObject("trap send1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
