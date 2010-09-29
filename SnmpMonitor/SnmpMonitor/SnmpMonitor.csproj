@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="mib">
+      <HintPath>..\..\..\SNMPDll\library\mib.dll</HintPath>
+    </Reference>
+    <Reference Include="SnmpComp">
+      <HintPath>..\..\..\SNMPDll\library\SnmpComp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -45,6 +51,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TableReader">
+      <HintPath>..\..\..\SNMPDll\library\TableReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Tools">
+      <HintPath>..\..\..\SNMPDll\library\Tools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dsInOut.cs">
@@ -81,6 +93,7 @@
       <DependentUpon>frmMonitor.cs</DependentUpon>
     </Compile>
     <Compile Include="IPoller.cs" />
+    <Compile Include="OnConnect.cs" />
     <Compile Include="ParserSNMP.cs" />
     <Compile Include="PollCounter32.cs" />
     <Compile Include="Program.cs" />
@@ -89,6 +102,8 @@
     <Compile Include="SnmpConector.cs" />
     <Compile Include="SNMPPDU.cs" />
     <Compile Include="SNMPSequence.cs" />
+    <Compile Include="SNMPTrapPDU.cs" />
+    <Compile Include="SNMPTrapSend.cs" />
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +126,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="dsInOut.xsc">
       <DependentUpon>dsInOut.xsd</DependentUpon>
     </None>
@@ -133,6 +149,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\SNMPDll\SNMPDll.csproj">
+      <Project>{746BCF16-2214-481F-AA07-4FAE299D067F}</Project>
+      <Name>SNMPDll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XMLData\XMLData.csproj">
       <Project>{4FE0B811-A467-46E6-9A58-01A997DBD755}</Project>
       <Name>XMLData</Name>
@@ -143,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\trap send.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

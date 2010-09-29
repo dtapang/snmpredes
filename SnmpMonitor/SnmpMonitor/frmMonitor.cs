@@ -23,6 +23,7 @@ namespace SnmpMonitor
         private int availability;
         private ParserSNMP parser;
         private dsInOut.DataInOutDataTable inOutTable;
+        private Boolean linkUpDwn
         
         public frmMonitor()
         {
@@ -89,7 +90,7 @@ namespace SnmpMonitor
             string avail = snc.Availability;
             this.availability = Convert.ToInt32(avail);
             this.tooltxtAgent.Text = this.agent;
-            this.tooltxtComunity.Text = this.comunity;
+            this.txtDestinoTrap.Text = this.comunity;
             this.tooltxtAvailability.Text = this.availability.ToString() + "%";
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
@@ -179,7 +180,7 @@ namespace SnmpMonitor
 
         private void tooltxtComunity_Leave(object sender, EventArgs e)
         {
-            this.comunity = tooltxtComunity.Text;
+            this.comunity = txtDestinoTrap.Text;
         }
         private void tooltxtAvailability_Leave(object sender, EventArgs e)
         {
@@ -277,6 +278,18 @@ namespace SnmpMonitor
         {
             frmAbout f = new frmAbout();
             f.ShowDialog();
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if 
+            SNMPTrapSend.Send(txtDestinoTrap.Text, 162, "ver el texto de un trap", GenericStatus.LinkDown);
+ 
+        }
+
+        private void toolStripLabel4_Click(object sender, EventArgs e)
+        {
+
         }
 
        
