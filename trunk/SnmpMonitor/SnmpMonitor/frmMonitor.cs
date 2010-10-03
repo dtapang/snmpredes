@@ -91,7 +91,8 @@ namespace SnmpMonitor
             string avail = snc.Availability;
             this.availability = Convert.ToInt32(avail);
             this.tooltxtAgent.Text = this.agent;
-            this.txtDestinoTrap.Text = this.comunity;
+            this.tooltxtAgent.Text = this.agent;
+            this.tooltxtCommunity.Text = this.comunity;
             this.tooltxtAvailability.Text = this.availability.ToString() + "%";
             this.MibIn = snc.MIBInData;
             this.MibOut = snc.MIBDataOut;
@@ -183,7 +184,7 @@ namespace SnmpMonitor
 
         private void tooltxtComunity_Leave(object sender, EventArgs e)
         {
-            this.comunity = txtDestinoTrap.Text;
+            this.comunity = tooltxtDestTrap.Text;
         }
         private void tooltxtAvailability_Leave(object sender, EventArgs e)
         {
@@ -289,11 +290,11 @@ namespace SnmpMonitor
             //en la escucha del trap, deberia analizar el trap y detener o reanudar el contador
             if (statusLinkUp == true)
             {
-                SNMPTrapSend.Send(txtDestinoTrap.Text, 162, "trap de caida del link", GenericStatus.LinkDown);
+                SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de caida del link", GenericStatus.LinkDown);
             }
             else
             {
-                SNMPTrapSend.Send(txtDestinoTrap.Text, 162, "trap de subida del link", GenericStatus.LinkUp);
+                SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de subida del link", GenericStatus.LinkUp);
             }
  
         }
@@ -308,9 +309,9 @@ namespace SnmpMonitor
 
         }
 
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        private void tooltxtCommunity_Click(object sender, EventArgs e)
         {
-            this.txtDestinoTrap.Leave += new System.EventHandler(this.tooltxtComunity_Leave);
+            this.tooltxtDestTrap.Leave += new System.EventHandler(this.tooltxtComunity_Leave);
         }
 
        
