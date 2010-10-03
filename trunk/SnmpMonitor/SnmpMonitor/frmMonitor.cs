@@ -23,7 +23,8 @@ namespace SnmpMonitor
         private int availability;
         private ParserSNMP parser;
         private dsInOut.DataInOutDataTable inOutTable;
-        private Boolean linkUpDwn
+        private Boolean statusLinkUp;
+        private StopWatch disponibilidad;
         
         public frmMonitor()
         {
@@ -98,6 +99,8 @@ namespace SnmpMonitor
             int interfaceIndex = Convert.ToInt32(snc.InterfaceIndex);
             this.dataInPoller = new PollCounter32(this.agent, this.MibIn, interfaceIndex, this.comunity);
             this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, interfaceIndex, this.comunity);
+            this.statusLinkUp = true;
+            this.disponibilidad = new StopWatch();
         }
 
         private void tmrPoll_Tick(object sender, EventArgs e)
@@ -282,14 +285,32 @@ namespace SnmpMonitor
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            if 
-            SNMPTrapSend.Send(txtDestinoTrap.Text, 162, "ver el texto de un trap", GenericStatus.LinkDown);
+            //Si el estado de la conexion es arriba, entonces mando un linkdown, de lo contrario manto un linkup
+            //en la escucha del trap, deberia analizar el trap y detener o reanudar el contador
+            if (statusLinkUp == true)
+            {
+                SNMPTrapSend.Send(txtDestinoTrap.Text, 162, "trap de caida del link", GenericStatus.LinkDown);
+            }
+            else
+            {
+                SNMPTrapSend.Send(txtDestinoTrap.Text, 162, "trap de subida del link", GenericStatus.LinkUp);
+            }
  
         }
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtDestinoTrap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            this.txtDestinoTrap.Leave += new System.EventHandler(this.tooltxtComunity_Leave);
         }
 
        

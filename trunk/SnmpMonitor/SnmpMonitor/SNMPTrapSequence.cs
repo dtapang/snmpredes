@@ -5,18 +5,18 @@ using System.Text;
 
 namespace SnmpMonitor
 {
-    class SNMPSequence
+    class SNMPTrapSequence
     {
         //estructura del paquete snmp
         int snmpversion;
         String community;
-        SNMPPDU snmppdu;
+        SNMPTrapPDU snmpTrapPdu;
 
         //variables auxiliares
         int type;
         int length;
 
-        public SNMPSequence()
+        public SNMPTrapSequence()
         { }
 
         public int Snmpversion
@@ -43,20 +43,10 @@ namespace SnmpMonitor
             set { community = value; }
         }
 
-        public SNMPPDU Snmppdu
+        public SNMPTrapPDU SnmpTrapPdu
         {
-            get { return snmppdu; }
-            set { snmppdu = value; }
-        }
-    /*
-      public SNMPSequence (int SNMPversion,int type, int length, String community, SNMPPDU snmppdu){
-            this.SNMPversion = SNMPversion;
-            this.type = type;
-            this.length = length; 
-            this.community = community;
-            this.snmppdu = snmppdu;
-        }
-        */
-        
+            get { return snmpTrapPdu; }
+            set { snmpTrapPdu = value; }
+        }        
     }
 }
