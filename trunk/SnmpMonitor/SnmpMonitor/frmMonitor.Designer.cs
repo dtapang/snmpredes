@@ -63,6 +63,7 @@ namespace SnmpMonitor
             this.tooltxtAvailability = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.txtDestinoTrap = new System.Windows.Forms.ToolStripTextBox();
             this.tmrPoll = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,6 @@ namespace SnmpMonitor
             this.toolStripKbout = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
-            this.tooltxtDestinoTrap = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -235,7 +235,7 @@ namespace SnmpMonitor
             this.tooltxtAvailability,
             this.toolStripSeparator3,
             this.toolStripLabel4,
-            this.tooltxtDestinoTrap});
+            this.txtDestinoTrap});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -336,6 +336,12 @@ namespace SnmpMonitor
             this.toolStripLabel4.Size = new System.Drawing.Size(87, 44);
             this.toolStripLabel4.Text = "Destino de trap";
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
+            // 
+            // txtDestinoTrap
+            // 
+            this.txtDestinoTrap.Name = "txtDestinoTrap";
+            this.txtDestinoTrap.Size = new System.Drawing.Size(100, 47);
+            this.txtDestinoTrap.Click += new System.EventHandler(this.txtDestinoTrap_Click);
             // 
             // tmrPoll
             // 
@@ -439,12 +445,6 @@ namespace SnmpMonitor
             this.label4.TabIndex = 7;
             this.label4.Text = "TRAP Send";
             // 
-            // tooltxtDestinoTrap
-            // 
-            this.tooltxtDestinoTrap.Name = "tooltxtDestinoTrap";
-            this.tooltxtDestinoTrap.Size = new System.Drawing.Size(100, 47);
-            this.tooltxtDestinoTrap.Click += new System.EventHandler(this.txtDestinoTrap_Click);
-            // 
             // frmMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,7 +518,7 @@ namespace SnmpMonitor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripTextBox tooltxtDestinoTrap;
+        private System.Windows.Forms.ToolStripTextBox txtDestinoTrap;
     }
 }
 
