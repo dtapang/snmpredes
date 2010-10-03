@@ -91,7 +91,6 @@ namespace SnmpMonitor
             string avail = snc.Availability;
             this.availability = Convert.ToInt32(avail);
             this.tooltxtAgent.Text = this.agent;
-            this.tooltxtAgent.Text = this.agent;
             this.tooltxtCommunity.Text = this.comunity;
             this.tooltxtAvailability.Text = this.availability.ToString() + "%";
             this.MibIn = snc.MIBInData;
