@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
+using System.Net;
 
 namespace SnmpMonitor
 {
@@ -131,13 +132,16 @@ namespace SnmpMonitor
                            ProtocolType.Udp);
           sock.SetSocketOption(SocketOptionLevel.Socket,
                           SocketOptionName.ReceiveTimeout, 5000);
-          IPHostEntry ihe = Dns.GetHostEntry(host);
-          int indiceIP = 0;
-          if (ihe.AddressList.Count() > 1)
-          {
-              indiceIP = 1;
-          }
-          IPEndPoint iep = new IPEndPoint(ihe.AddressList[indiceIP], 161);
+          //IPHostEntry ihe = Dns.GetHostEntry(host);
+          //int indiceIP = 0;
+          //if (ihe.AddressList.Count() > 1)
+          //{
+          //    indiceIP = 1;
+          //}
+          //IPEndPoint iep = new IPEndPoint(ihe.AddressList[indiceIP], 161);
+          IPAddress ihe = IPAddress.Parse(host);
+
+          IPEndPoint iep = new IPEndPoint(ihe, 161);
           EndPoint ep = (EndPoint)iep;
           sock.SendTo(packet, snmplen, SocketFlags.None, iep);
 
