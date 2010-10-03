@@ -57,13 +57,13 @@ namespace SnmpMonitor
             this.tooltxtAgent = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.tooltxtCommunity = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tooltxtAvailability = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.txtDestinoTrap = new System.Windows.Forms.ToolStripTextBox();
+            this.tooltxtDestTrap = new System.Windows.Forms.ToolStripTextBox();
             this.tmrPoll = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -229,13 +229,13 @@ namespace SnmpMonitor
             this.tooltxtAgent,
             this.toolStripSeparator2,
             this.toolStripLabel2,
-            this.toolStripTextBox1,
+            this.tooltxtCommunity,
             this.toolStripSeparator4,
             this.toolStripLabel3,
             this.tooltxtAvailability,
             this.toolStripSeparator3,
             this.toolStripLabel4,
-            this.txtDestinoTrap});
+            this.tooltxtDestTrap});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -302,10 +302,10 @@ namespace SnmpMonitor
             this.toolStripLabel2.Size = new System.Drawing.Size(60, 44);
             this.toolStripLabel2.Text = "Comunity";
             // 
-            // toolStripTextBox1
+            // tooltxtCommunity
             // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 47);
+            this.tooltxtCommunity.Name = "tooltxtCommunity";
+            this.tooltxtCommunity.Size = new System.Drawing.Size(100, 47);
             // 
             // toolStripSeparator4
             // 
@@ -337,11 +337,11 @@ namespace SnmpMonitor
             this.toolStripLabel4.Text = "Destino de trap";
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
-            // txtDestinoTrap
+            // tooltxtDestTrap
             // 
-            this.txtDestinoTrap.Name = "txtDestinoTrap";
-            this.txtDestinoTrap.Size = new System.Drawing.Size(100, 47);
-            this.txtDestinoTrap.Click += new System.EventHandler(this.txtDestinoTrap_Click);
+            this.tooltxtDestTrap.Name = "tooltxtDestTrap";
+            this.tooltxtDestTrap.Size = new System.Drawing.Size(100, 47);
+            this.tooltxtDestTrap.Click += new System.EventHandler(this.txtDestinoTrap_Click);
             // 
             // tmrPoll
             // 
@@ -514,11 +514,11 @@ namespace SnmpMonitor
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem verDatosToolStripMenuItem;
         private System.Windows.Forms.Button SendTrap;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox tooltxtCommunity;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripTextBox txtDestinoTrap;
+        private System.Windows.Forms.ToolStripTextBox tooltxtDestTrap;
     }
 }
 
