@@ -138,6 +138,7 @@ namespace SnmpMonitor
                 InicializarProgressBar(Convert.ToInt32(this.snc.PollInterval));
                 tmrPoll.Start();
 
+
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
                 //"1.3.6.1.2.1.2.2.1.10.12"
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "127.0.0.1", "public", this.MibIn + ".12");
