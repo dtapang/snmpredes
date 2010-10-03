@@ -59,6 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SNMPTrapPDU.cs" />
+    <Compile Include="SNMPTrapSequence.cs" />
+    <Compile Include="ParserSNMPTrap.cs" />
     <Compile Include="dsInOut.cs">
       <DependentUpon>dsInOut.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -102,8 +105,8 @@
     <Compile Include="SnmpConector.cs" />
     <Compile Include="SNMPPDU.cs" />
     <Compile Include="SNMPSequence.cs" />
-    <Compile Include="SNMPTrapPDU.cs" />
     <Compile Include="SNMPTrapSend.cs" />
+    <Compile Include="StopWatch.cs" />
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>

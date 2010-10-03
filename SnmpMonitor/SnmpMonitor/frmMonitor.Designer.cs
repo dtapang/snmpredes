@@ -41,6 +41,7 @@ namespace SnmpMonitor
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.verDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.SendTrap = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtOut = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,15 +49,20 @@ namespace SnmpMonitor
             this.label1 = new System.Windows.Forms.Label();
             this.txtDisponibilidad = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tooltxtAgent = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.txtDestinoTrap = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tooltxtAvailability = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.tmrPoll = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,13 +75,8 @@ namespace SnmpMonitor
             this.toolStripKbin = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripKbout = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
-            this.SendTrap = new System.Windows.Forms.Button();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tooltxtDestinoTrap = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -152,6 +153,18 @@ namespace SnmpMonitor
             this.splitContainer1.SplitterDistance = 88;
             this.splitContainer1.TabIndex = 4;
             // 
+            // SendTrap
+            // 
+            this.SendTrap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SendTrap.Image = global::SnmpMonitor.Properties.Resources.trap_send1;
+            this.SendTrap.Location = new System.Drawing.Point(869, 0);
+            this.SendTrap.Name = "SendTrap";
+            this.SendTrap.Size = new System.Drawing.Size(61, 47);
+            this.SendTrap.TabIndex = 14;
+            this.SendTrap.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.SendTrap.UseVisualStyleBackColor = true;
+            this.SendTrap.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -222,13 +235,44 @@ namespace SnmpMonitor
             this.tooltxtAvailability,
             this.toolStripSeparator3,
             this.toolStripLabel4,
-            this.txtDestinoTrap});
+            this.tooltxtDestinoTrap});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.Size = new System.Drawing.Size(948, 47);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton3.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButton3.Text = "Save";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButton1.Text = "Start";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButton2.Text = "Stop";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripSeparator1
             // 
@@ -258,16 +302,15 @@ namespace SnmpMonitor
             this.toolStripLabel2.Size = new System.Drawing.Size(60, 44);
             this.toolStripLabel2.Text = "Comunity";
             // 
-            // txtDestinoTrap
+            // toolStripTextBox1
             // 
-            this.txtDestinoTrap.Name = "txtDestinoTrap";
-            this.txtDestinoTrap.Size = new System.Drawing.Size(100, 47);
-            this.txtDestinoTrap.Leave += new System.EventHandler(this.tooltxtComunity_Leave);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 47);
             // 
-            // toolStripSeparator3
+            // toolStripSeparator4
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 47);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 47);
             // 
             // toolStripLabel3
             // 
@@ -281,6 +324,18 @@ namespace SnmpMonitor
             this.tooltxtAvailability.Size = new System.Drawing.Size(100, 47);
             this.tooltxtAvailability.Leave += new System.EventHandler(this.tooltxtAvailability_Leave);
             this.tooltxtAvailability.Click += new System.EventHandler(this.tooltxtAvailability_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 47);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(87, 44);
+            this.toolStripLabel4.Text = "Destino de trap";
+            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // tmrPoll
             // 
@@ -375,71 +430,27 @@ namespace SnmpMonitor
             this.tmrSeconds.Interval = 500;
             this.tmrSeconds.Tick += new System.EventHandler(this.tmrSeconds_Tick);
             // 
-            // SendTrap
+            // label4
             // 
-            this.SendTrap.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SendTrap.Image = global::SnmpMonitor.Properties.Resources.trap_send1;
-            this.SendTrap.Location = new System.Drawing.Point(869, 0);
-            this.SendTrap.Name = "SendTrap";
-            this.SendTrap.Size = new System.Drawing.Size(61, 47);
-            this.SendTrap.TabIndex = 14;
-            this.SendTrap.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.SendTrap.UseVisualStyleBackColor = true;
-            this.SendTrap.Click += new System.EventHandler(this.button1_Click_2);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(784, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "TRAP Send";
             // 
-            // toolStripButton1
+            // tooltxtDestinoTrap
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButton1.Text = "Start";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButton2.Text = "Stop";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton3.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButton3.Text = "Save";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 47);
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(87, 44);
-            this.toolStripLabel4.Text = "Destino de trap";
-            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 47);
+            this.tooltxtDestinoTrap.Name = "tooltxtDestinoTrap";
+            this.tooltxtDestinoTrap.Size = new System.Drawing.Size(100, 47);
+            this.tooltxtDestinoTrap.Click += new System.EventHandler(this.txtDestinoTrap_Click);
             // 
             // frmMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(948, 379);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
@@ -477,7 +488,6 @@ namespace SnmpMonitor
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox tooltxtAgent;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripTextBox txtDestinoTrap;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Label label3;
@@ -505,8 +515,10 @@ namespace SnmpMonitor
         private System.Windows.Forms.ToolStripMenuItem verDatosToolStripMenuItem;
         private System.Windows.Forms.Button SendTrap;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripTextBox tooltxtDestinoTrap;
     }
 }
 

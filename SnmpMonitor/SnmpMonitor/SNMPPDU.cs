@@ -7,6 +7,7 @@ namespace SnmpMonitor
 {
     class SNMPPDU
     {
+        int pduType;
         int requestID;
         int error;
         int index;
@@ -15,6 +16,12 @@ namespace SnmpMonitor
 
         public SNMPPDU()
         { }
+
+        public int PduType
+        {
+            get { return pduType; }
+            set { pduType = value; }
+        }
 
         public int RequestID
         {
@@ -34,6 +41,7 @@ namespace SnmpMonitor
             set { index = value; }
         }
 
+        //variable bindings
         public String ObjectIdentifier
         {
             get { return objectIdentifier; }
@@ -45,14 +53,5 @@ namespace SnmpMonitor
             get { return valor; }
             set { valor = value; }
         }
-
-        /*
-        public SNMPPDU(int  requestID, int error, int index, String objectIdentifier, String value) {
-            this.requestID = requestID;
-            this.error = error;
-            this.objectIdentifier = objectIdentifier;
-            this.value = value;
-        }
-         */
     }
 }
