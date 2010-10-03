@@ -7,6 +7,7 @@ namespace SnmpMonitor
 {
     class SNMPTrapPDU
     {
+        //
         //si el pdutype es 4, se trata de un trap
         int pduType;
         String enterprise;
