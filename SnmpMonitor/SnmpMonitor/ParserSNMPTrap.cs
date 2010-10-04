@@ -44,7 +44,7 @@ namespace SnmpMonitor
             //length = SNMPsequence[sig + 1];
             pdu.PduType = SNMPsequence[sig + 2];
             sig = sig + 2 + length;
-            sig = sig + 
+            //sig = sig + 
 
             length = SNMPsequence[sig + 2];
             for (int j = (sig + 3); j < (sig + 2 + length); j++)
