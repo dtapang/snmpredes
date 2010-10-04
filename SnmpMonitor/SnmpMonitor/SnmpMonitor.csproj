@@ -162,7 +162,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SNMPDll.csproj">
+    <ProjectReference Include="..\..\..\SNMPDll\SNMPDll.csproj">
       <Project>{746BCF16-2214-481F-AA07-4FAE299D067F}</Project>
       <Name>SNMPDll</Name>
     </ProjectReference>

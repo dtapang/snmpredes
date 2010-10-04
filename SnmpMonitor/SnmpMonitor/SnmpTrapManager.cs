@@ -60,6 +60,11 @@ namespace SnmpMonitor
             {
                 byte[] resultado = e.Buffer;
 
+                ParserSNMPTrap parser = new ParserSNMPTrap();
+                SNMPTrapSequence sequence = parser.ObtenerValor(resultado);
+                if (sequence.SnmpTrapPdu.GenericTrap == 2) { }
+
+
                 //if ()
                 e.SetBuffer(new byte[1024], 0, 512);
                 mainSocket.ReceiveAsync(e); //Call recieve handler again.
