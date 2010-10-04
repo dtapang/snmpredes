@@ -108,6 +108,12 @@
     <Compile Include="SNMPSequence.cs" />
     <Compile Include="SNMPTrapSend.cs" />
     <Compile Include="StopWatch.cs" />
+    <Compile Include="TrapSimulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrapSimulator.Designer.cs">
+      <DependentUpon>TrapSimulator.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +136,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TrapSimulator.resx">
+      <DependentUpon>TrapSimulator.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="dsInOut.xsc">
       <DependentUpon>dsInOut.xsd</DependentUpon>
