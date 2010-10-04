@@ -37,7 +37,7 @@ namespace SnmpMonitor
                 mainSocket.ConnectAsync(e); //CONNECTS ASYNCRONOUSLY
 
 
-                e.Completed += new EventHandler<SocketAsyncEventArgs>(this.e_Completed); //EVENT HANDLER FOR TRAP RECIEVE
+                e.Completed += new EventHandler<SocketAsyncEventArgs>(this.RecieveTrap); //EVENT HANDLER FOR TRAP RECIEVE
                 mainSocket.ReceiveAsync(e); //ACTIVATE RECIEVE TRAPS
             }
             catch (SocketException se)
@@ -45,44 +45,46 @@ namespace SnmpMonitor
                 System.Windows.Forms.MessageBox.Show(se.Message);
             }
         }
-        public void e_Completed(Object sender, SocketAsyncEventArgs e)
+        public void RecieveTrap(Object sender, SocketAsyncEventArgs e)
         {
             ////Code to recieve handler..Deleted for now.////
+            byte[] resultado = e.Buffer;
+            e.SetBuffer(new byte[1024],0,512);
             mainSocket.ReceiveAsync(e); //Call recieve handler again.
         } 
-        public void RecieveTrap(IAsyncResult asyn)
-        {
-            try
-            {
-                // Here we complete/end the BeginAccept() asynchronous call
-                // by calling EndAccept() - which returns the reference to
-                // a new Socket object
-                Socket workerSocket = mainSocket.EndAccept(asyn);
-                byte[] resultado = new byte[1024];
-                workerSocket.BeginReceive(resultado, 0, 512, SocketFlags.None, DataRecieved, resultado);
-                // Let the worker Socket do the further processing for the 
-                // just connected client
-                //WaitForData(m_workerSocket[m_clientCount]);
-                // Now increment the client count
-                //++m_clientCount;
-                // Display this client connection as a status message on the GUI	
-                //String str = String.Format("Client # {0} connected", m_clientCount);
-                //textBoxMsg.Text = str;
+        //public void RecieveTrap(IAsyncResult asyn)
+        //{
+        //    try
+        //    {
+        //        // Here we complete/end the BeginAccept() asynchronous call
+        //        // by calling EndAccept() - which returns the reference to
+        //        // a new Socket object
+        //        Socket workerSocket = mainSocket.EndAccept(asyn);
+        //        byte[] resultado = new byte[1024];
+        //        workerSocket.BeginReceive(resultado, 0, 512, SocketFlags.None, DataRecieved, resultado);
+        //        // Let the worker Socket do the further processing for the 
+        //        // just connected client
+        //        //WaitForData(m_workerSocket[m_clientCount]);
+        //        // Now increment the client count
+        //        //++m_clientCount;
+        //        // Display this client connection as a status message on the GUI	
+        //        //String str = String.Format("Client # {0} connected", m_clientCount);
+        //        //textBoxMsg.Text = str;
 
-                // Since the main Socket is now free, it can go back and wait for
-                // other clients who are attempting to connect
-                mainSocket.BeginAccept(new AsyncCallback(RecieveTrap), null);
-            }
-            catch (ObjectDisposedException)
-            {
-                System.Diagnostics.Debugger.Log(0, "1", "\n OnClientConnection: Socket has been closed\n");
-            }
-            catch (SocketException se)
-            {
-                MessageBox.Show(se.Message);
-            }
+        //        // Since the main Socket is now free, it can go back and wait for
+        //        // other clients who are attempting to connect
+        //        mainSocket.BeginAccept(new AsyncCallback(RecieveTrap), null);
+        //    }
+        //    catch (ObjectDisposedException)
+        //    {
+        //        System.Diagnostics.Debugger.Log(0, "1", "\n OnClientConnection: Socket has been closed\n");
+        //    }
+        //    catch (SocketException se)
+        //    {
+        //        MessageBox.Show(se.Message);
+        //    }
 
-        }
+        //}
         public void DataRecieved(IAsyncResult async)
         {
             byte[] resultado = (byte[])async.AsyncState;
