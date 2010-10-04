@@ -24,7 +24,8 @@ namespace SnmpMonitor
         private ParserSNMP parser;
         private dsInOut.DataInOutDataTable inOutTable;
         private Boolean statusLinkUp;
-        private StopWatch disponibilidad;
+        private StopWatch tiempoTotal;
+        private StopWatch tiempoActivo;
         
         public frmMonitor()
         {
@@ -100,7 +101,6 @@ namespace SnmpMonitor
             this.dataInPoller = new PollCounter32(this.agent, this.MibIn, interfaceIndex, this.comunity);
             this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, interfaceIndex, this.comunity);
             this.statusLinkUp = true;
-            this.disponibilidad = new StopWatch();
         }
 
         private void tmrPoll_Tick(object sender, EventArgs e)
@@ -124,12 +124,25 @@ namespace SnmpMonitor
         {
             tmrPoll.Stop();
             DetenerProgressBar();
+
+            //detengo cronometros
+            tiempoActivo.Stop();
+            tiempoTotal.Stop();
+
+            //cargo el calculo de disponibilidad
+            txtDisponibilidad.Text = (tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs() + "%";
         }
         private void Start()
         {
             
             try
             {
+                //inicio cronometros
+                this.tiempoTotal = new StopWatch();
+                this.tiempoActivo = new StopWatch();
+                tiempoTotal.Start();
+                tiempoActivo.Start();
+
                 this.inOutTable = new dsInOut.DataInOutDataTable();
                 tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
                 this.dataInPoller.Poll();
