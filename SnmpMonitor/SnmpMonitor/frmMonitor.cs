@@ -130,7 +130,17 @@ namespace SnmpMonitor
             tiempoTotal.Stop();
 
             //cargo el calculo de disponibilidad
-            txtDisponibilidad.Text = (tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs() + "%";
+            double realAvailability = (tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs();
+            txtDisponibilidad.Text = realAvailability + "%";
+
+            if (realAvailability < availability)
+            {
+                MessageBox.Show(realAvailability + ": Se ha alcanzado la disponibilidad comprometida por el proveedor");
+            }
+            else
+            {
+                MessageBox.Show(realAvailability + ": No se ha alcanzado la disponibilidad comprometida por el proveedor");
+            }
         }
         private void Start()
         {
