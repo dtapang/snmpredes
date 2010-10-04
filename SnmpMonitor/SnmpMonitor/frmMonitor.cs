@@ -26,6 +26,7 @@ namespace SnmpMonitor
         private Boolean statusLinkUp;
         private StopWatch tiempoTotal;
         private StopWatch tiempoActivo;
+        SnmpTrapManager trapManager;
         
         public frmMonitor()
         {
@@ -101,6 +102,7 @@ namespace SnmpMonitor
             this.dataInPoller = new PollCounter32(this.agent, this.MibIn, interfaceIndex, this.comunity);
             this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, interfaceIndex, this.comunity);
             this.statusLinkUp = true;
+            trapManager = new SnmpTrapManager();
         }
 
         private void tmrPoll_Tick(object sender, EventArgs e)
@@ -124,6 +126,8 @@ namespace SnmpMonitor
         {
             tmrPoll.Stop();
             DetenerProgressBar();
+
+            trapManager.StopListening();
 
             //detengo cronometros
             tiempoActivo.Stop();
@@ -160,6 +164,7 @@ namespace SnmpMonitor
                 InicializarProgressBar(Convert.ToInt32(this.snc.PollInterval));
                 tmrPoll.Start();
 
+                trapManager.StartListening();
 
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
                 //"1.3.6.1.2.1.2.2.1.10.12"
@@ -177,8 +182,6 @@ namespace SnmpMonitor
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Start();
-            SnmpTrapManager trapManager = new SnmpTrapManager();
-            trapManager.StartListening();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -321,7 +324,7 @@ namespace SnmpMonitor
             {
                 SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de subida del link", GenericStatus.LinkUp);
             }
- 
+            statusLinkUp = !statusLinkUp;
         }
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
