@@ -212,7 +212,7 @@ namespace SnmpMonitor
 
         private void tooltxtComunity_Leave(object sender, EventArgs e)
         {
-            this.comunity = tooltxtDestTrap.Text;
+            //this.comunity = tooltxtDestTrap.Text;
         }
         private void tooltxtAvailability_Leave(object sender, EventArgs e)
         {
@@ -316,15 +316,15 @@ namespace SnmpMonitor
         {
             //Si el estado de la conexion es arriba, entonces mando un linkdown, de lo contrario manto un linkup
             //en la escucha del trap, deberia analizar el trap y detener o reanudar el contador
-            if (statusLinkUp == true)
-            {
-                SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de caida del link", GenericStatus.LinkDown);
-            }
-            else
-            {
-                SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de subida del link", GenericStatus.LinkUp);
-            }
-            statusLinkUp = !statusLinkUp;
+            //if (statusLinkUp == true)
+            //{
+            //    SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de caida del link", GenericStatus.LinkDown);
+            //}
+            //else
+            //{
+            //    SNMPTrapSend.Send(tooltxtDestTrap.Text, 162, "trap de subida del link", GenericStatus.LinkUp);
+            //}
+            //statusLinkUp = !statusLinkUp;
         }
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
@@ -339,7 +339,13 @@ namespace SnmpMonitor
 
         private void tooltxtCommunity_Click(object sender, EventArgs e)
         {
-            this.tooltxtDestTrap.Leave += new System.EventHandler(this.tooltxtComunity_Leave);
+            //this.tooltxtDestTrap.Leave += new System.EventHandler(this.tooltxtComunity_Leave);
+        }
+
+        private void enviarTrapsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TrapSimulator trp = new TrapSimulator();
+            trp.Show();
         }
 
        
