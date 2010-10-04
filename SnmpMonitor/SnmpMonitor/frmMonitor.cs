@@ -167,6 +167,8 @@ namespace SnmpMonitor
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Start();
+            SnmpTrapManager trapManager = new SnmpTrapManager();
+            trapManager.StartListening();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)

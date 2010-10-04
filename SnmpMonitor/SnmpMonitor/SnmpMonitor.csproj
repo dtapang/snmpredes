@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SnmpTrapManager.cs" />
     <Compile Include="SNMPTrapPDU.cs" />
     <Compile Include="SNMPTrapSequence.cs" />
     <Compile Include="ParserSNMPTrap.cs" />
