@@ -38,6 +38,7 @@ namespace SnmpMonitor
         {
             this.stopTime = DateTime.Now;
             this.running = false;
+            this.interval = interval + (DateTime.Now - startTime);
         }
 
 
@@ -57,9 +58,12 @@ namespace SnmpMonitor
         public double GetElapsedTimeSecs()
         {
             if (running)
+            {
                 interval = interval + (DateTime.Now - startTime);
-            else
-                interval = interval + (stopTime - startTime);
+                startTime = DateTime.Now;
+            }
+            //else
+            //    interval = interval + (stopTime - startTime);
 
             return interval.TotalSeconds;
         }

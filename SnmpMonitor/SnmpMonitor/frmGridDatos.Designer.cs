@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGridDatos));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dsInOut = new SnmpMonitor.dsInOut();
-            this.dataInOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.timeStampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.counterValueInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.counterValueOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueOutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataInOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsInOut = new SnmpMonitor.dsInOut();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsInOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataInOutBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsInOut)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -63,16 +63,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(621, 340);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // dsInOut
-            // 
-            this.dsInOut.DataSetName = "dsInOut";
-            this.dsInOut.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataInOutBindingSource
-            // 
-            this.dataInOutBindingSource.DataMember = "DataInOut";
-            this.dataInOutBindingSource.DataSource = this.dsInOut;
             // 
             // timeStampDataGridViewTextBoxColumn
             // 
@@ -109,6 +99,16 @@
             this.valueOutDataGridViewTextBoxColumn.Name = "valueOutDataGridViewTextBoxColumn";
             this.valueOutDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // dataInOutBindingSource
+            // 
+            this.dataInOutBindingSource.DataMember = "DataInOut";
+            this.dataInOutBindingSource.DataSource = this.dsInOut;
+            // 
+            // dsInOut
+            // 
+            this.dsInOut.DataSetName = "dsInOut";
+            this.dsInOut.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmGridDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,9 +121,10 @@
             this.MinimizeBox = false;
             this.Name = "frmGridDatos";
             this.Text = "Tabla de datos";
+            this.Load += new System.EventHandler(this.frmGridDatos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsInOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataInOutBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsInOut)).EndInit();
             this.ResumeLayout(false);
 
         }
