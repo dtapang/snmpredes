@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnmpMonitor", "SnmpMonitor\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLData", "XMLData\XMLData.csproj", "{4FE0B811-A467-46E6-9A58-01A997DBD755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNMPDll", "..\..\SNMPDll\SNMPDll.csproj", "{746BCF16-2214-481F-AA07-4FAE299D067F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SNMPDll", "..\..\SNMPDll.csproj", "{746BCF16-2214-481F-AA07-4FAE299D067F}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
