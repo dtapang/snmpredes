@@ -62,7 +62,10 @@ namespace SnmpMonitor
 
                 ParserSNMPTrap parser = new ParserSNMPTrap();
                 SNMPTrapSequence sequence = parser.ObtenerValor(resultado);
-                if (sequence.SnmpTrapPdu.GenericTrap == 2) { }
+                if (sequence.SnmpTrapPdu.GenericTrap == 3) 
+                {
+
+                }
 
 
                 //if ()

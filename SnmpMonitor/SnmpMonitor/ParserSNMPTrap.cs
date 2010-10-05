@@ -41,28 +41,24 @@ namespace SnmpMonitor
 
             SNMPTrapPDU pdu = new SNMPTrapPDU();
 
-            //length = SNMPsequence[sig + 1];
-            pdu.PduType = SNMPsequence[sig + 2];
-            sig = sig + 2 + length;
-            //sig = sig + 
-
-            length = SNMPsequence[sig + 2];
-            for (int j = (sig + 3); j < (sig + 2 + length); j++)
-            {
-                pdu.Enterprise = pdu.Enterprise + Convert.ToChar(SNMPsequence[j]);
-            }
+            length = SNMPsequence[sig + 1];
+            //pdu.PduType = SNMPsequence[sig + 2];
             sig = sig + 2 + length;
 
-            
-            length = SNMPsequence[sig + 2];
+
+            length = SNMPsequence[sig + 1];
+            //for (int j = (sig + 3); j < (sig + 2 + length); j++)
+            //{
+            //    pdu.Enterprise = pdu.Enterprise + Convert.ToChar(SNMPsequence[j]);
+            //}
             for (int j = (sig + 3); j < (sig + 2 + length); j++)
             {
                 pdu.AgentAddr = pdu.AgentAddr + Convert.ToChar(SNMPsequence[j]);
             }
-            sig = sig + 2 + length;
+            sig = sig + 2 + length;           
 
-            length = SNMPsequence[sig + 2];
-            pdu.GenericTrap = SNMPsequence[sig + 3];
+            length = SNMPsequence[sig + 1];
+            pdu.GenericTrap = SNMPsequence[sig + 2];
             sig = sig + 2 + length;
 
             length = SNMPsequence[sig + 2];
