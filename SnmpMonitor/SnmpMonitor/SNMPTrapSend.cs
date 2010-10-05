@@ -238,11 +238,33 @@ namespace SnmpMonitor
             IPAddress[] ips = Dns.GetHostAddresses(hostName);
             data.Add(ToByte(DataType.IPAddress));
             data.Add((byte)4);
-
-            if (ips.Length > 0)
-                data.AddRange(ips[0].GetAddressBytes());
-            else
-                data.AddRange(new byte[4] { 0, 0, 0, 0 });
+            bool escribioIP = false;
+            int i = 0;
+            while (!escribioIP)
+            {
+                if (ips[i].AddressFamily == AddressFamily.InterNetwork)
+                {
+                    if (ips.Length > 0)
+                    {
+                        data.AddRange(ips[i].GetAddressBytes());
+                        escribioIP = true;
+                    }
+                    else
+                    {
+                        data.AddRange(new byte[4] { 0, 0, 0, 0 });
+                        escribioIP = true;
+                    }
+                }
+                else
+                {
+                    i++;
+                    if (i == ips.Length)
+                    {
+                        data.AddRange(new byte[4] { 0, 0, 0, 0 });
+                        escribioIP = true;
+                    }
+                }
+            }
         }
 
         #endregion
