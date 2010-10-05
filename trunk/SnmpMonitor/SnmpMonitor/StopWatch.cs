@@ -23,7 +23,10 @@ namespace SnmpMonitor
         {
             this.interval = TimeSpan.Zero;
         }
-
+        public bool Running
+        {
+            get { return this.running; }
+        }
         public void Start()
         {
             this.startTime = DateTime.Now;
