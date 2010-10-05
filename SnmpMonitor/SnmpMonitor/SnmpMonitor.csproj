@@ -172,10 +172,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SNMPDll.csproj">
-      <Project>{746BCF16-2214-481F-AA07-4FAE299D067F}</Project>
-      <Name>SNMPDll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XMLData\XMLData.csproj">
       <Project>{4FE0B811-A467-46E6-9A58-01A997DBD755}</Project>
       <Name>XMLData</Name>
