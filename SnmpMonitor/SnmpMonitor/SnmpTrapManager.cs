@@ -11,6 +11,11 @@ namespace SnmpMonitor
     class SnmpTrapManager
     {
         Socket mainSocket;
+        ITrapListener listener;
+        public SnmpTrapManager(ITrapListener listener)
+        {
+            this.listener = listener;
+        }
         public void StartListening()
         {
             try
@@ -62,9 +67,18 @@ namespace SnmpMonitor
 
                 ParserSNMPTrap parser = new ParserSNMPTrap();
                 SNMPTrapSequence sequence = parser.ObtenerValor(resultado);
-                if (sequence.SnmpTrapPdu.GenericTrap == 3) 
+                if (sequence.SnmpTrapPdu.GenericTrap == 3)
                 {
-
+                    listener.ListenTrap(false);
+                }
+                else if (sequence.SnmpTrapPdu.GenericTrap == 2)
+                {
+                    listener.ListenTrap(true);
+                }
+                else
+                {
+                    e.SetBuffer(new byte[1024], 0, 512);
+                    throw new Exception("Trap no considerado");
                 }
 
 

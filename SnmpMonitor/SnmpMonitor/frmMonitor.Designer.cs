@@ -48,6 +48,9 @@ namespace SnmpMonitor
             this.label1 = new System.Windows.Forms.Label();
             this.txtDisponibilidad = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tooltxtAgent = new System.Windows.Forms.ToolStripTextBox();
@@ -62,6 +65,8 @@ namespace SnmpMonitor
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simuladorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enviarTrapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -69,11 +74,7 @@ namespace SnmpMonitor
             this.toolStripKbin = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripKbout = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
-            this.simuladorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enviarTrapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.tmrDisponibilidad = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -224,6 +225,37 @@ namespace SnmpMonitor
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton3.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButton3.Text = "Save";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButton1.Text = "Start";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButton2.Text = "Stop";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -314,6 +346,21 @@ namespace SnmpMonitor
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // simuladorToolStripMenuItem
+            // 
+            this.simuladorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enviarTrapsToolStripMenuItem});
+            this.simuladorToolStripMenuItem.Name = "simuladorToolStripMenuItem";
+            this.simuladorToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.simuladorToolStripMenuItem.Text = "Simulador";
+            // 
+            // enviarTrapsToolStripMenuItem
+            // 
+            this.enviarTrapsToolStripMenuItem.Name = "enviarTrapsToolStripMenuItem";
+            this.enviarTrapsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.enviarTrapsToolStripMenuItem.Text = "Enviar Traps";
+            this.enviarTrapsToolStripMenuItem.Click += new System.EventHandler(this.enviarTrapsToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -369,51 +416,10 @@ namespace SnmpMonitor
             this.tmrSeconds.Interval = 500;
             this.tmrSeconds.Tick += new System.EventHandler(this.tmrSeconds_Tick);
             // 
-            // simuladorToolStripMenuItem
+            // tmrDisponibilidad
             // 
-            this.simuladorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.enviarTrapsToolStripMenuItem});
-            this.simuladorToolStripMenuItem.Name = "simuladorToolStripMenuItem";
-            this.simuladorToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.simuladorToolStripMenuItem.Text = "Simulador";
-            // 
-            // enviarTrapsToolStripMenuItem
-            // 
-            this.enviarTrapsToolStripMenuItem.Name = "enviarTrapsToolStripMenuItem";
-            this.enviarTrapsToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.enviarTrapsToolStripMenuItem.Text = "Enviar Traps";
-            this.enviarTrapsToolStripMenuItem.Click += new System.EventHandler(this.enviarTrapsToolStripMenuItem_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton3.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButton3.Text = "Save";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButton1.Text = "Start";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButton2.Text = "Stop";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.tmrDisponibilidad.Interval = 500;
+            this.tmrDisponibilidad.Tick += new System.EventHandler(this.tmrDisponibilidad_Tick);
             // 
             // frmMonitor
             // 
@@ -485,6 +491,7 @@ namespace SnmpMonitor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem simuladorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enviarTrapsToolStripMenuItem;
+        private System.Windows.Forms.Timer tmrDisponibilidad;
     }
 }
 

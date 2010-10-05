@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SnmpMonitor
 {
-    public partial class frmMonitor : Form
+    public partial class frmMonitor : Form, ITrapListener
     {
         private int errorCount = 0;
         private PollCounter32 dataInPoller;
@@ -27,6 +27,7 @@ namespace SnmpMonitor
         private StopWatch tiempoTotal;
         private StopWatch tiempoActivo;
         SnmpTrapManager trapManager;
+        double tiempoTotalDisponibilidad;
         
         public frmMonitor()
         {
@@ -102,7 +103,8 @@ namespace SnmpMonitor
             this.dataInPoller = new PollCounter32(this.agent, this.MibIn, interfaceIndex, this.comunity);
             this.dataOutPoller = new PollCounter32(this.agent, this.MibOut, interfaceIndex, this.comunity);
             this.statusLinkUp = true;
-            trapManager = new SnmpTrapManager();
+            this.trapManager = new SnmpTrapManager(this);
+            this.tiempoTotalDisponibilidad = 0;
         }
 
         private void tmrPoll_Tick(object sender, EventArgs e)
@@ -132,12 +134,13 @@ namespace SnmpMonitor
             //detengo cronometros
             tiempoActivo.Stop();
             tiempoTotal.Stop();
+            tmrDisponibilidad.Stop();
 
             //cargo el calculo de disponibilidad
-            double realAvailability = (tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs();
+            double realAvailability = (tiempoTotalDisponibilidad + tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs();
             txtDisponibilidad.Text = realAvailability + "%";
 
-            if (realAvailability < availability)
+            if (realAvailability >= availability)
             {
                 MessageBox.Show(realAvailability + ": Se ha alcanzado la disponibilidad comprometida por el proveedor");
             }
@@ -156,6 +159,7 @@ namespace SnmpMonitor
                 this.tiempoActivo = new StopWatch();
                 tiempoTotal.Start();
                 tiempoActivo.Start();
+                this.tiempoTotalDisponibilidad = 0;
 
                 this.inOutTable = new dsInOut.DataInOutDataTable();
                 tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
@@ -163,6 +167,7 @@ namespace SnmpMonitor
                 this.dataOutPoller.Poll();
                 InicializarProgressBar(Convert.ToInt32(this.snc.PollInterval));
                 tmrPoll.Start();
+                tmrDisponibilidad.Start();
 
                 trapManager.StartListening();
 
@@ -348,6 +353,26 @@ namespace SnmpMonitor
             trp.Show();
         }
 
-       
+
+
+        public void ListenTrap(bool linkDown)
+        {
+            if (linkDown)
+            {
+                //this.tiempoTotalDisponibilidad += this.tiempoActivo.GetElapsedTimeSecs();
+                this.tiempoActivo.Stop(); 
+            }
+            else
+            {
+                //this.tiempoTotalDisponibilidad += this.tiempoActivo.GetElapsedTimeSecs();
+                this.tiempoActivo.Start();
+            }
+        }
+
+        private void tmrDisponibilidad_Tick(object sender, EventArgs e)
+        {
+            double realAvailability = (this.tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs();
+            txtDisponibilidad.Text = realAvailability + "%";
+        }
     }
 }
