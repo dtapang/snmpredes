@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnmpMonitor", "SnmpMonitor\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLData", "XMLData\XMLData.csproj", "{4FE0B811-A467-46E6-9A58-01A997DBD755}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RedCom Tarea1", "RedCom Tarea1\RedCom Tarea1.vdproj", "{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -39,6 +41,12 @@ Global
 		{4FE0B811-A467-46E6-9A58-01A997DBD755}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4FE0B811-A467-46E6-9A58-01A997DBD755}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4FE0B811-A467-46E6-9A58-01A997DBD755}.Release|x86.ActiveCfg = Release|Any CPU
+		{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}.Debug|Any CPU.ActiveCfg = Debug
+		{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}.Debug|x86.ActiveCfg = Debug
+		{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}.Release|Any CPU.ActiveCfg = Release
+		{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}.Release|Mixed Platforms.ActiveCfg = Release
+		{ABC04E23-A8CC-4DF6-9F27-2F84597C9497}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
