@@ -23,11 +23,13 @@ namespace SnmpMonitor
         private int availability;
         private ParserSNMP parser;
         private dsInOut.DataInOutDataTable inOutTable;
+        private dsInOut.LinkStateDataTable linkStateTable;
         private Boolean statusLinkUp;
         private StopWatch tiempoTotal;
         private StopWatch tiempoActivo;
         SnmpTrapManager trapManager;
         double tiempoTotalDisponibilidad;
+        private frmLinkState frmlink;
         
         public frmMonitor()
         {
@@ -157,19 +159,20 @@ namespace SnmpMonitor
                 //inicio cronometros
                 this.tiempoTotal = new StopWatch();
                 this.tiempoActivo = new StopWatch();
-                tiempoTotal.Start();
-                tiempoActivo.Start();
+                this.tiempoTotal.Start();
+                this.tiempoActivo.Start();
                 this.tiempoTotalDisponibilidad = 0;
 
                 this.inOutTable = new dsInOut.DataInOutDataTable();
-                tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
+                this.linkStateTable = new dsInOut.LinkStateDataTable();
+                this.tmrPoll.Interval = Convert.ToInt32(this.snc.PollInterval);
                 this.dataInPoller.Poll();
                 this.dataOutPoller.Poll();
                 InicializarProgressBar(Convert.ToInt32(this.snc.PollInterval));
-                tmrPoll.Start();
-                tmrDisponibilidad.Start();
+                this.tmrPoll.Start();
+                this.tmrDisponibilidad.Start();
 
-                trapManager.StartListening();
+                this.trapManager.StartListening();
 
                 //Byte[] resultado = snmp.get(SNMP.Request.get, "localhost", "public", "1.3.6.1.2.1.1.5.0");
                 //"1.3.6.1.2.1.2.2.1.10.12"
@@ -248,7 +251,7 @@ namespace SnmpMonitor
         {
             double datoKbps = 0;
             datoKbps = valorIntervalo / (this.tmrPoll.Interval / 1000);
-            datoKbps = datoKbps / 1024;
+            datoKbps = (datoKbps * 8) / 1000;
             return Math.Round(datoKbps, 2);
         }
 
@@ -359,20 +362,70 @@ namespace SnmpMonitor
         {
             if (linkDown)
             {
-                //this.tiempoTotalDisponibilidad += this.tiempoActivo.GetElapsedTimeSecs();
-                this.tiempoActivo.Stop(); 
+                if (this.tiempoActivo.Running)
+                {
+                    //this.tiempoTotalDisponibilidad += this.tiempoActivo.GetElapsedTimeSecs();
+                    this.tiempoActivo.Stop();
+                }
             }
             else
             {
-                //this.tiempoTotalDisponibilidad += this.tiempoActivo.GetElapsedTimeSecs();
-                this.tiempoActivo.Start();
+                if (!this.tiempoActivo.Running)
+                {
+                    //this.tiempoTotalDisponibilidad += this.tiempoActivo.GetElapsedTimeSecs();
+                    this.tiempoActivo.Start();
+                }
             }
         }
 
         private void tmrDisponibilidad_Tick(object sender, EventArgs e)
         {
-            double realAvailability = (this.tiempoActivo.GetElapsedTimeSecs() * 100) / tiempoTotal.GetElapsedTimeSecs();
-            txtDisponibilidad.Text = realAvailability + "%";
+            try
+            {
+                double tiempoDisponible = this.tiempoActivo.GetElapsedTimeSecs();
+                double tiempoTotal = this.tiempoTotal.GetElapsedTimeSecs();
+                double realAvailability = (tiempoDisponible * 100) / tiempoTotal;
+                realAvailability = Math.Round(realAvailability, 2);
+                txtDisponibilidad.Text = realAvailability + "%";
+                this.linkStateTable.AddLinkStateRow(DateTime.Now, this.tiempoActivo.Running, tiempoTotal, tiempoDisponible, realAvailability);
+
+                string expression = "TimeStamp > '" + DateTime.Now.AddMinutes(-10).ToString() + "'";
+                if (frmlink != null)
+                {
+                    if (frmlink.chtLinkState != null && this.linkStateTable != null)
+                    {
+                        if (frmlink.chtLinkState.DataSource != null)
+                        {
+                            frmlink.chtLinkState.DataSource = this.linkStateTable.Select(expression);
+                            frmlink.chtLinkState.DataBind();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void verDatosDisponibilidadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.frmlink = new frmLinkState();
+            frmlink.grdLinkState.DataSource = this.linkStateTable;
+            frmlink.grdLinkState.Refresh();
+
+            if (this.tmrDisponibilidad.Enabled)
+            {
+                string expression = "TimeStamp > '" + DateTime.Now.AddMinutes(-10).ToString() + "'";
+                frmlink.chtLinkState.DataSource = this.linkStateTable.Select(expression);
+
+                frmlink.chtLinkState.Series["Availability"].YValueMembers = "Availability";
+                frmlink.chtLinkState.Series["Availability"].XValueMember = "TimeStamp";
+                frmlink.chtLinkState.Series["Availability"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+
+                frmlink.chtLinkState.DataBind();
+            }
+                frmlink.Show();
         }
     }
 }

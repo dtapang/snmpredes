@@ -23,6 +23,17 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="LinkState" msprop:Generator_TableClassName="LinkStateDataTable" msprop:Generator_TableVarName="tableLinkState" msprop:Generator_TablePropName="LinkState" msprop:Generator_RowDeletingName="LinkStateRowDeleting" msprop:Generator_UserTableName="LinkState" msprop:Generator_RowChangingName="LinkStateRowChanging" msprop:Generator_RowEvHandlerName="LinkStateRowChangeEventHandler" msprop:Generator_RowDeletedName="LinkStateRowDeleted" msprop:Generator_RowEvArgName="LinkStateRowChangeEvent" msprop:Generator_RowChangedName="LinkStateRowChanged" msprop:Generator_RowClassName="LinkStateRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TimeStamp" msdata:Caption="Time Stamp" msprop:Generator_ColumnVarNameInTable="columnTimeStamp" msprop:Generator_ColumnPropNameInRow="TimeStamp" msprop:Generator_ColumnPropNameInTable="TimeStampColumn" msprop:Generator_UserColumnName="TimeStamp" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LinkState" msdata:Caption="Link State" msprop:Generator_ColumnVarNameInTable="columnLinkState" msprop:Generator_ColumnPropNameInRow="LinkState" msprop:Generator_ColumnPropNameInTable="LinkStateColumn" msprop:Generator_UserColumnName="LinkState" type="xs:boolean" />
+              <xs:element name="TotalTime" msdata:Caption="Total Time" msprop:Generator_ColumnVarNameInTable="columnTotalTime" msprop:Generator_ColumnPropNameInRow="TotalTime" msprop:Generator_ColumnPropNameInTable="TotalTimeColumn" msprop:Generator_UserColumnName="TotalTime" type="xs:double" minOccurs="0" />
+              <xs:element name="AvailableTime" msdata:Caption="Available Time" msprop:Generator_ColumnVarNameInTable="columnAvailableTime" msprop:Generator_ColumnPropNameInRow="AvailableTime" msprop:Generator_ColumnPropNameInTable="AvailableTimeColumn" msprop:Generator_UserColumnName="AvailableTime" type="xs:double" minOccurs="0" />
+              <xs:element name="Availability" msprop:Generator_ColumnVarNameInTable="columnAvailability" msprop:Generator_ColumnPropNameInRow="Availability" msprop:Generator_ColumnPropNameInTable="AvailabilityColumn" msprop:Generator_UserColumnName="Availability" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

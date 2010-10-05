@@ -59,6 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmLinkState.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLinkState.Designer.cs">
+      <DependentUpon>frmLinkState.cs</DependentUpon>
+    </Compile>
     <Compile Include="ITrapListener.cs" />
     <Compile Include="SnmpTrapManager.cs" />
     <Compile Include="SNMPTrapPDU.cs" />
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGridDatos.resx">
       <DependentUpon>frmGridDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLinkState.resx">
+      <DependentUpon>frmLinkState.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMonitor.resx">
       <DependentUpon>frmMonitor.cs</DependentUpon>

@@ -75,6 +75,7 @@ namespace SnmpMonitor
             this.toolStripKbout = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrSeconds = new System.Windows.Forms.Timer(this.components);
             this.tmrDisponibilidad = new System.Windows.Forms.Timer(this.components);
+            this.verDatosDisponibilidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chartInOut)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -113,14 +114,15 @@ namespace SnmpMonitor
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.verDatosToolStripMenuItem});
+            this.verDatosToolStripMenuItem,
+            this.verDatosDisponibilidadToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 48);
             // 
             // verDatosToolStripMenuItem
             // 
             this.verDatosToolStripMenuItem.Name = "verDatosToolStripMenuItem";
-            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.verDatosToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.verDatosToolStripMenuItem.Text = "Ver datos";
             this.verDatosToolStripMenuItem.Click += new System.EventHandler(this.verDatosToolStripMenuItem_Click);
             // 
@@ -158,6 +160,7 @@ namespace SnmpMonitor
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "Kbps Out";
+            this.label3.Visible = false;
             // 
             // txtOut
             // 
@@ -166,6 +169,7 @@ namespace SnmpMonitor
             this.txtOut.Name = "txtOut";
             this.txtOut.Size = new System.Drawing.Size(68, 20);
             this.txtOut.TabIndex = 12;
+            this.txtOut.Visible = false;
             // 
             // label2
             // 
@@ -175,6 +179,7 @@ namespace SnmpMonitor
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Kbps In";
+            this.label2.Visible = false;
             // 
             // txtIn
             // 
@@ -183,6 +188,7 @@ namespace SnmpMonitor
             this.txtIn.Name = "txtIn";
             this.txtIn.Size = new System.Drawing.Size(68, 20);
             this.txtIn.TabIndex = 10;
+            this.txtIn.Visible = false;
             // 
             // label1
             // 
@@ -421,6 +427,13 @@ namespace SnmpMonitor
             this.tmrDisponibilidad.Interval = 500;
             this.tmrDisponibilidad.Tick += new System.EventHandler(this.tmrDisponibilidad_Tick);
             // 
+            // verDatosDisponibilidadToolStripMenuItem
+            // 
+            this.verDatosDisponibilidadToolStripMenuItem.Name = "verDatosDisponibilidadToolStripMenuItem";
+            this.verDatosDisponibilidadToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.verDatosDisponibilidadToolStripMenuItem.Text = "Ver datos disponibilidad";
+            this.verDatosDisponibilidadToolStripMenuItem.Click += new System.EventHandler(this.verDatosDisponibilidadToolStripMenuItem_Click);
+            // 
             // frmMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -492,6 +505,7 @@ namespace SnmpMonitor
         private System.Windows.Forms.ToolStripMenuItem simuladorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enviarTrapsToolStripMenuItem;
         private System.Windows.Forms.Timer tmrDisponibilidad;
+        private System.Windows.Forms.ToolStripMenuItem verDatosDisponibilidadToolStripMenuItem;
     }
 }
 

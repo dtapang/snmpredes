@@ -9,16 +9,11 @@ using System.Windows.Forms;
 
 namespace SnmpMonitor
 {
-    public partial class frmGridDatos : Form
+    public partial class frmLinkState : Form
     {
-        public frmGridDatos()
+        public frmLinkState()
         {
             InitializeComponent();
-        }
-
-        private void frmGridDatos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
