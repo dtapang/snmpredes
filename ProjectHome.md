@@ -1,0 +1,1 @@
+Monitorear ciertas variables de un router Cisco por SNMP
